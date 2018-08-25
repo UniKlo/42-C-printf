@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/08/22 18:51:08 by khou             ###   ########.fr        #
+#    Updated: 2018/08/24 19:25:42 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,6 @@ DIR_O = obj
 HEADER = include
 
 SOURCES = ft_printf.c \
-			main.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
@@ -50,16 +49,25 @@ norme:
 	@echo
 	norminette ./$(DIR_S)/
 
+
+
+
+
+
+
+
 clean:
-	rm -f $(OBJS)
-	rm -rf $(DIR_O)
-	make clean -C $(LIBFT)
+	@rm -f $(OBJS)
+	@rm -rf $(DIR_O)
+	@make clean -C $(LIBFT)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f srcs/*~
-	rm -f srcs/\#*\#
-	make fclean -C $(LIBFT)
+	@rm -f $(NAME)
+	@rm -f *~
+	@rm -f \#*\#
+	@rm -f srcs/*~
+	@rm -f srcs/\#*\#
+	@make fclean -C $(LIBFT)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/08/22 18:17:25 by khou             ###   ########.fr       */
+/*   Updated: 2018/08/23 14:18:52 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ union						u_type
 	size_t					zdiuox;
 //	wint_t					lc;
 	unsigned 				charc;
-	wchar_t					lc;
+//	wchar_t					lc;
 	char					*s;
 	wchar_t					*ls;
 //	void					p;
