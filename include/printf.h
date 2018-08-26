@@ -6,12 +6,12 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/08/23 14:18:52 by khou             ###   ########.fr       */
+/*   Updated: 2018/08/26 15:36:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 /*
 ** -------------------------- External Headers ---------------------------------
@@ -47,5 +47,11 @@ union						u_type
 	wchar_t					*ls;
 //	void					p;
 };
+
+/*
+** ------------------------- Structure Definition ------------------------------
+*/
+
+
 
 #endif

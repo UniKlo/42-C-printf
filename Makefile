@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/08/24 19:25:42 by khou             ###   ########.fr        #
+#    Updated: 2018/08/26 16:21:02 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,9 +26,9 @@ HEADER = include
 
 SOURCES = ft_printf.c \
 
-SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
+SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
-OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
+OBJS = $(addprefix $(DIR_O)/, $(SOURCES:.c=.o))
 
 all: $(NAME)
 
@@ -49,17 +49,15 @@ norme:
 	@echo
 	norminette ./$(DIR_S)/
 
-
-
-
-
-
-
+test:
+	@make -C $(LIBFT)/
+	@$(CC) $(LIBFT/%.a) -I $(HEADER) -g $(SRCS) srcs/main.c
 
 clean:
 	@rm -f $(OBJS)
 	@rm -rf $(DIR_O)
 	@make clean -C $(LIBFT)
+	@echo "cleaned up objects"
 
 fclean: clean
 	@rm -f $(NAME)
@@ -67,7 +65,10 @@ fclean: clean
 	@rm -f \#*\#
 	@rm -f srcs/*~
 	@rm -f srcs/\#*\#
+	@rm -f a.out
+	@rm -rf *dSYM
 	@make fclean -C $(LIBFT)
+	@echo "reset"
 
 re: fclean all
 
