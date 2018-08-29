@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/08/26 16:21:02 by khou             ###   ########.fr        #
+#    Updated: 2018/08/29 01:10:41 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,6 +25,8 @@ DIR_O = obj
 HEADER = include
 
 SOURCES = ft_printf.c \
+			parse.c \
+
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
@@ -49,9 +51,9 @@ norme:
 	@echo
 	norminette ./$(DIR_S)/
 
-test:
+test: $(SRCS) 
 	@make -C $(LIBFT)/
-	@$(CC) $(LIBFT/%.a) -I $(HEADER) -g $(SRCS) srcs/main.c
+	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main.c
 
 clean:
 	@rm -f $(OBJS)
