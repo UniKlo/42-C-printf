@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/08/29 02:24:36 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/08 19:20:39 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdarg.h>
 # include <errno.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 /*
 ** ----------------------------- Union  Type  ----------------------------------
@@ -60,7 +61,25 @@ typedef struct				s_print
 
 }							t_print;
 
+typedef struct              s_block
+{
+	bool	alt_form;
+	bool	left_align;
+	bool	prepend_space;
+	bool	prepend_zero;
+	bool	show_sign;
+	char	length[3];
+    char        specifier;
+	int 	len;
+	int		precision;
+	int		width;
+//    va_list		*ap;
+    int			*ret;
+    int			*fd;
+union u_type	t;
+}                           t_block;
 
+typedef void	(*t_fun_tbl)(t_block *blk, union u_type *t, va_list ap);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -69,5 +88,7 @@ typedef struct				s_print
 */
 int                     ft_printf(const char *format, ...);
 void		parse(t_print *all);
-
+void		grab_flag(t_block *blk,char *format, int *i);
+void		fmt_decimal(t_print *all, t_block *blk);
+void		p_s(t_block *blk, union u_type *t, va_list ap)
 #endif

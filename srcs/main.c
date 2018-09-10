@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 11:19:19 by khou              #+#    #+#             */
-/*   Updated: 2018/08/29 02:34:02 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/09 12:49:04 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -17,10 +17,10 @@ int		main()
 
 //	format = "String";
 	printf("REAL printf\n/*\n");
-	printf("number: %d", 5);
+	printf("nbr: %5.4d", 111);
 	printf("\n*/\n");
-    printf("MY ft_printf\n/*\n");
-	ft_printf("AB%C\n");
+    printf("\nMY ft_printf\n/*\n");
+	ft_printf("%122.150dxyz", 5);
     printf("\n*/\n");
 	return (0);
 }

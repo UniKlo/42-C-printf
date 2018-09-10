@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/08/29 01:10:41 by khou             ###   ########.fr        #
+#    Updated: 2018/09/08 19:07:12 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,8 +16,6 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror -O2
 
-LIBFT = libft
-
 DIR_S = srcs
 
 DIR_O = obj
@@ -26,7 +24,8 @@ HEADER = include
 
 SOURCES = ft_printf.c \
 			parse.c \
-
+			grab_flag.c\
+#			fmt_decimal.c\
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
@@ -35,7 +34,7 @@ OBJS = $(addprefix $(DIR_O)/, $(SOURCES:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C $(LIBFT)
+	@make -C libft
 	@cp libft/libft.a ./$(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
@@ -51,14 +50,14 @@ norme:
 	@echo
 	norminette ./$(DIR_S)/
 
-test: $(SRCS) 
-	@make -C $(LIBFT)/
+test: $(SRCS)
+	@make -C libft
 	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main.c
 
 clean:
 	@rm -f $(OBJS)
 	@rm -rf $(DIR_O)
-	@make clean -C $(LIBFT)
+	@make clean -C libft
 	@echo "cleaned up objects"
 
 fclean: clean
@@ -69,7 +68,7 @@ fclean: clean
 	@rm -f srcs/\#*\#
 	@rm -f a.out
 	@rm -rf *dSYM
-	@make fclean -C $(LIBFT)
+	@make fclean -C libft
 	@echo "reset"
 
 re: fclean all
