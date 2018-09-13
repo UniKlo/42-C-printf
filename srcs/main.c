@@ -6,21 +6,16 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 11:19:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/09 12:49:04 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/12 21:41:29 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
+#define TEST1 "pr: {%-+4.4lld}\n", (long long int)1000
+#define TEST2 "ft: {%-+4.4lld}\n", (long long int)1000
 
-int		main()
+int		main(int argc, char **argv)
 {
-//	char	*format;
-
-//	format = "String";
-	printf("REAL printf\n/*\n");
-	printf("nbr: %5.4d", 111);
-	printf("\n*/\n");
-    printf("\nMY ft_printf\n/*\n");
-	ft_printf("%122.150dxyz", 5);
-    printf("\n*/\n");
-	return (0);
+	printf(TEST1);
+	ft_printf(TEST2);
+ 	return (0);
 }

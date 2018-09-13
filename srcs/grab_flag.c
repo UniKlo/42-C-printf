@@ -7,7 +7,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/09 19:03:21 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/12 15:49:31 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,18 @@ static int	precision(t_block *blk, char *blk_fmt)
 	return (x);
 }
 
- void	is_flag(t_block *blk, char c)
+static int	is_flag(t_block *blk, char c)
 {
-	char	flag;
-
-//	if (!(flag = *ft_strchr("#+-0 ", c)))
 	if (!ft_strchr("#+-0 ", c))
-		return;
-	flag = *ft_strchr("#+-0 ", c);
-	blk->alt_form == 1 || flag == '#' ? blk->alt_form = true : false;
-	blk->show_sign == 1 || flag == '+' ? blk->show_sign = true : false;
-	blk->left_align == 1 || flag == '-' ? blk->left_align = true : false;
-	blk->prepend_zero == 1 || flag == '0' ? blk->prepend_zero = true : false;
-	blk->prepend_space == 1 || flag == ' ' ? blk->prepend_space = true : false;
+		return (0);
+
+	blk->alt_form == 1 || c == '#' ? blk->alt_form = true : false;
+	
+	blk->sign == 1 || c == '+' ? blk->sign = true : false;
+	blk->left_align == 1 || c == '-' ? blk->left_align = true : false;
+	c == '0' && blk->left_align != 1 ? blk->prepend_zero = true : false;
+	blk->prepend_space == 1 || c == ' ' ? blk->prepend_space = true : false;
+	return (1);
 }
 
 static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
@@ -79,39 +78,29 @@ static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 
 	if ((c == 's' || c == 'S'|| c == 'p' || c == 'd' || c == 'D' || c == 'i' 
 		 || c == 'o' || c == 'O' || c == 'u' || c == 'U'|| c == 'x' || c == 'X'
-		 || c == 'c' || c == 'C' ||  c == 'u' || c == 'U' 
+		 || c == 'c' || c == 'C'
 		 //|| c == '%' || c == 'n' || c == 'e' || c == 'g' || c == 'G'
 		 ) && (blk->specifier = c))
 		return (1);
-	printf("invalid directive\n");//not valid char
+	printf("invalid directive: %c\n", c);//not valid char
 	return (0);
 }
 
 void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 {
-	while (blk_fmt[++*i] && !(specifier(blk, blk_fmt[*i])))// more cpu	
-//	while (blk_fmt[++*i] && !(ft_isalpha(blk_fmt[*i])))//check one by one
+	while (blk_fmt[++*i] && !ft_strchr("sSpdDioOuUxXcC%", blk_fmt[*i]))
 	{
 		//printf("%c\n", blk_fmt[*i]);
-		is_flag(blk, blk_fmt[*i]);
-		if (blk_fmt[*i] == '.')
-			*i += precision(blk, blk_fmt + *i + 1);//dont read number twice?
-//				precision(blk, blk_fmt + *i + 1);
+		if (is_flag(blk, blk_fmt[*i]));//better to check it one by one
+		else if (blk_fmt[*i] == '.')//check it in chunk
+			*i += precision(blk, blk_fmt + *i + 1);
 		else if (ft_isdigit(blk_fmt[*i]))
 			*i += width(blk, blk_fmt + *i);
-		if (ft_strchr("hlzj", (blk_fmt[*i])))
+		else if (ft_strchr("hlzj", (blk_fmt[*i])))
 			*i += length(blk, blk_fmt + *i);
 		//Color
+		else
+			printf("invalid directive: %c\n", blk_fmt[*i]);//not valid char
 	}
 	specifier(blk, blk_fmt[*i]);
-	printf("specifier is: %c\n", blk->specifier);
-	printf("precision is: %d\n", blk->precision);
-	printf("width is: %d\n", blk->width);
-	printf("format index is at: %i\n", *i);
-/*	printf("#+-0' '\n%i%i%i%i %i\n", blk->alt_form,
-		   blk->show_sign,
-		   blk->left_align,
-		   blk->prepend_zero,
-		   blk->prepend_space);*/
-
 }

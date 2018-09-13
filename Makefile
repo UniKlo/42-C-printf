@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/08 19:07:12 by khou             ###   ########.fr        #
+#    Updated: 2018/09/10 16:52:32 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,7 @@ HEADER = include
 SOURCES = ft_printf.c \
 			parse.c \
 			grab_flag.c\
-#			fmt_decimal.c\
+			p_di.c\
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
