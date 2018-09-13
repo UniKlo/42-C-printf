@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/12 21:39:11 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/12 22:27:43 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ int	bigger(int a, int b)
 
 void	write_blk(t_block *blk, t_write *act)
 {
-	
 	blk->sign ? act->space-- : 0;
-	
+	act->space < 0 ? act->space = 0: 0;
+	*blk->ret += act->zero + act->space + act->length;
+	blk->sign || blk->data.s_signed < 0 ? *blk->ret += 1 : 0;
 	if (blk->left_align)
 	{
-		blk->sign ? write(1, &act->sign, 1) : 0;
+		blk->sign || blk->data.s_signed < 0 ? write(1, &act->sign, 1) : 0;
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
 		ft_putnbr(act->nbr);
@@ -63,8 +64,7 @@ void	write_blk(t_block *blk, t_write *act)
 	{
 		while (act->space-- >0)
 			write(*blk->fd, " ", 1);
-		blk->sign ? write(1, &act->sign, 1) : 0;
-
+		blk->sign || blk->data.s_signed < 0 ? write(1, &act->sign, 1) : 0;
 	//	printf("!!!!!!!!!!!!\n");
 	//	while (1);
 		while (act->zero-- > 0)
@@ -75,8 +75,7 @@ void	write_blk(t_block *blk, t_write *act)
 
 void		p_di(t_block *blk)
 {
-	intmax_t	tmp;                                                                                                                                                                                                                                                                                                                                                                                                              
-
+	intmax_t	tmp;
 	t_write act;
 
 	establish_write(&act);
@@ -98,9 +97,9 @@ void		p_di(t_block *blk)
 		tmp /= 10;
 		act.length++;
 	}
-	printf("space: %d, bigger: %d", act.space, bigger(blk->precision, act.length));
 	act.space = blk->width - bigger(blk->precision, act.length);// +, -, 0
-	act.zero = blk->precision - act.length;// +, -, 0
-	printf("space: %d, zero: %d", act.space, act.zero);
+	act.space < 0 ? act.space = 0: 0;
+	act.zero = (blk->precision - act.length);
+	act.zero < 0 ? act.zero = 0: 0;// +, -, 0
 	write_blk(blk, &act);
 }
