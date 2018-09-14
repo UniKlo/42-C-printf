@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/10 16:52:32 by khou             ###   ########.fr        #
+#    Updated: 2018/09/13 19:28:23 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -53,6 +53,10 @@ norme:
 test: $(SRCS)
 	@make -C libft
 	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main.c
+
+test01: $(SRCS)
+	@make -C libft
+	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main01.c
 
 clean:
 	@rm -f $(OBJS)

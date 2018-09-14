@@ -7,7 +7,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/12 15:49:31 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/13 20:21:25 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int	width(t_block *blk, char *blk_fmt)
 
 	x = 0;
 	blk->width = ft_atoi(blk_fmt);
+//	printf("blk-width: %d\n", blk->width);
 	while (ft_isdigit(blk_fmt[++x]));
 	return (x - 1);
 }
@@ -63,15 +64,24 @@ static int	is_flag(t_block *blk, char c)
 {
 	if (!ft_strchr("#+-0 ", c))
 		return (0);
-
 	blk->alt_form == 1 || c == '#' ? blk->alt_form = true : false;
-	
 	blk->sign == 1 || c == '+' ? blk->sign = true : false;
 	blk->left_align == 1 || c == '-' ? blk->left_align = true : false;
-	c == '0' && blk->left_align != 1 ? blk->prepend_zero = true : false;
+	blk->prepend_zero == 1 || c == '0' ? blk->prepend_zero = true : false;
+//	c == '0' ? blk->prepend_zero = true : false;
+//	printf("pre zero: %d\n", blk->prepend_zero);
 	blk->prepend_space == 1 || c == ' ' ? blk->prepend_space = true : false;
 	return (1);
 }
+
+static void	valid_flag(t_block *blk)
+{
+	blk->sign == 1 ? blk->prepend_space = false : 0;
+	blk->precision > 0 ? blk->prepend_zero = false : 0;
+//	printf("valid precision: %d\n", blk->precision);
+//	printf("valid zero: %d\n", blk->prepend_zero);
+}
+
 
 static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 {
@@ -82,7 +92,7 @@ static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 		 //|| c == '%' || c == 'n' || c == 'e' || c == 'g' || c == 'G'
 		 ) && (blk->specifier = c))
 		return (1);
-	printf("invalid directive: %c\n", c);//not valid char
+	printf("invalid directive from spe: %c\n", c);//not valid char
 	return (0);
 }
 
@@ -94,13 +104,16 @@ void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 		if (is_flag(blk, blk_fmt[*i]));//better to check it one by one
 		else if (blk_fmt[*i] == '.')//check it in chunk
 			*i += precision(blk, blk_fmt + *i + 1);
-		else if (ft_isdigit(blk_fmt[*i]))
+		else if (!blk->width && ft_isdigit(blk_fmt[*i]))
 			*i += width(blk, blk_fmt + *i);
 		else if (ft_strchr("hlzj", (blk_fmt[*i])))
 			*i += length(blk, blk_fmt + *i);
 		//Color
-		else
-			printf("invalid directive: %c\n", blk_fmt[*i]);//not valid char
+//		else
+		//		printf("invalid directive from flag: %c\n", blk_fmt[*i]);//not valid char
 	}
+//	printf("out zero: %d\n", blk->prepend_zero);
+	valid_flag(blk);
 	specifier(blk, blk_fmt[*i]);
+//	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->prepend_zero, blk->prepend_space);
 }
