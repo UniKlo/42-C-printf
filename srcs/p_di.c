@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/13 20:21:33 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/13 20:36:24 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	bigger(int a, int b)
 void	write_blk(t_block *blk, t_write *act)
 {
 	act->sign && act->space-- > 0 ? *blk->ret += 1 : 0;
+	act->space < 1 && act->sign ? *blk->ret += 1 : 0;
 	blk->prepend_space && act->space-- > 0 ? *blk->ret += 1 : 0;  
 	act->space < 0 ? act->space = 0: 0;
 	*blk->ret += act->zero + act->space + act->length;
