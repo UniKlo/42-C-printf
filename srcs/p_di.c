@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/13 20:36:24 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/14 22:34:20 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	signed_lengh(t_block *blk)
 {
 	if (blk->length[0] == '\0')
-		blk->data.s_signed = va_arg(*blk->ap, int);
+		blk->data.s_signed = (int)va_arg(*blk->ap, int);
 	else if (blk->length[0] == 'h' && blk->length[1] == 'h')
 		blk->data.s_signed = (char)va_arg(*blk->ap, int);
 	else if (blk->length[0] == 'h')
@@ -47,13 +47,19 @@ int	bigger(int a, int b)
 
 void	write_blk(t_block *blk, t_write *act)
 {
+	act->space <= 0 && act->sign ? *blk->ret += 1 : 0;
 	act->sign && act->space-- > 0 ? *blk->ret += 1 : 0;
-	act->space < 1 && act->sign ? *blk->ret += 1 : 0;
+	blk->prepend_space && act->sign ? blk->prepend_space = false : 0;
+//	printf("T/F: %d\n",  act->sign);
+//	printf("T/F: %d\n", act->space);
+
+	act->space <= 0 && blk->prepend_space ? *blk->ret += 1 : 0;
 	blk->prepend_space && act->space-- > 0 ? *blk->ret += 1 : 0;  
 	act->space < 0 ? act->space = 0: 0;
-	*blk->ret += act->zero + act->space + act->length;
-//	blk->sign || blk->data.s_signed < 0 ? *blk->ret += 1 : 0;
-//	printf("ret: %d\n", *blk->ret);
+//	printf("before ret: %d\n", *blk->ret);
+	*blk->ret +=  act->zero + act->space + act->length;
+//	printf("final ret: %d\n", *blk->ret);
+//	printf("zero: %d, space: %d, len: %d\n", act->zero, act->space, act->length);
 	if (blk->left_align)
 	{
 		(blk->prepend_space) && write(*blk->fd, " ", 1);
@@ -77,10 +83,6 @@ void	write_blk(t_block *blk, t_write *act)
 		}
 
 		!blk->prepend_zero && act->sign ? write(1, &act->sign, 1) : 0;
-//		(blk->prepend_space) && write(*blk->fd, " ", 1);
-//		while (act->space-- >0)
-//			blk->prepend_zero ? write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
-//		blk->sign || blk->data.s_signed < 0 ? write(1, &act->sign, 1) : 0;
 	//	printf("!!!!!!!!!!!!\n");
 	//	while (1);
 		while (act->zero-- > 0)
@@ -102,7 +104,7 @@ void		p_di(t_block *blk)
 		act.sign = '-';
 		act.nbr = -blk->data.s_signed;
 	}
-	else if (tmp > 0)
+	else
 	{
 		act.sign = '+'; 
 		act.nbr = blk->data.s_signed;
@@ -119,6 +121,7 @@ void		p_di(t_block *blk)
 		tmp /= 10;
 		act.length++;
 	}
+	(act.nbr == 0) ? act.length++ : 0;
 	act.space = blk->width - bigger(blk->precision, act.length);// +, -, 0
 //	printf("p_di,space: %d\n", act.space);
 	act.space < 0 ? act.space = 0: 0;

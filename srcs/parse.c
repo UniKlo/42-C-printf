@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/12 16:03:03 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/14 13:46:41 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	establish(t_print *all, t_block *blk)
 	blk->alt_form = false;
 	blk->width = 0;
 	blk->precision = -1;
-	blk->length[0] = '\0';//?
-	blk->length[1] = '\0';//?
-	blk->length[2] = '\0';//?
+	blk->length[0] = '\0';//for char for len
+	blk->length[1] = '\0';//
+	blk->length[2] = '\0';//
 	blk->specifier = 0;
 	blk->len = 0;
 	blk->ap = &all->ap;

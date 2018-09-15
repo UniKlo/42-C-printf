@@ -64,13 +64,13 @@ int	main(int ac, char **av)
 	   s[i] = '\0';
 	   */
 	/*--------------------Testcase---------------------------------*/
-
+/*
 	printf("len ft:%d\n", ft_printf("%.4d\n", -424242));
 	printf("len :%d\n", printf("%.4d\n", -424242));
 
 
 	ft_printf("%-d\n", 42);
-	printf("%-d\n",42);
+	printf("%-d\n",42); */
 
 
 	/*
@@ -199,77 +199,85 @@ int	main(int ac, char **av)
 
 
 	d = 54321;
-/*	   ft_printf("ft_printf:\n\n");
+	/*	   ft_printf("ft_printf:\n\n");
 
-	   ft_printf("%%123 %s %s%s!\n", NULL, "abc", " start");
-	   ft_printf("你是豬\n");*/
-	   ft_printf("00 %d\n", 0);
-	   ft_printf("01 %d\n", d);
-	   ft_printf("02 %0d\n", d);
-	   ft_printf("03 %-d\n", d);
-	   ft_printf("04 %+d\n", d);
-	   ft_printf("05 % d\n", d);
+	ft_printf("%%123 %s %s%s!\n", NULL, "abc", " start");
+	ft_printf("你是豬\n");*/
 
-	   ft_printf("06 %0-d\n", d);
-	   ft_printf("07 %0+d\n", d);
-	   ft_printf("08 %0 d\n", d);
-	   ft_printf("09 %-+d\n", d);
-	   ft_printf("10 %- d\n", d);
-	   ft_printf("11 %+ d\n", d);
+	ft_printf("00 %d\n", 2147483648);
+	ft_printf("01 %d\n", -2147483648);
+	ft_printf("02 % d\n", 42);
+	ft_printf("03 % d\n", -42);
+	ft_printf("04 %+d\n", 0);
+	ft_printf("05 %03.2d\n", 0);
 
-	   ft_printf("12 %0-+d\n", d);
-	   ft_printf("13 %0- d\n", d);
-	   ft_printf("14 %0+ d\n", d);
-	   ft_printf("15 %-+ d\n", d);
-	   ft_printf("16 %0-+ d\n", d);
+	ft_printf("00 %d\n", 0);
+	ft_printf("01 %d\n", d);
+	ft_printf("02 %0d\n", d);
+	ft_printf("03 %-d\n", d);
+	ft_printf("04 %+d\n", d);
+	ft_printf("05 % d\n", d);
 
-	   ft_printf("21 %10d\n", d);
-	   ft_printf("22 %010d\n", d);
-	   ft_printf("23 %-10d\n", d);
-	   ft_printf("24 %+10d\n", d);
-	   ft_printf("25 % 10d\n", d);
+	ft_printf("06 %0-d\n", d);
+	ft_printf("07 %0+d\n", d);
+	ft_printf("08 %0 d\n", d);
+	ft_printf("09 %-+d\n", d);
+	ft_printf("10 %- d\n", d);
+	ft_printf("11 %+ d\n", d);
 
-	   ft_printf("26 %0-10d\n", d);
-	   ft_printf("27 %0+10d\n", d);
-	   ft_printf("28 %0 10d\n", d);
-	   ft_printf("29 %-+10d\n", d);
-	   ft_printf("30 %- 10d\n", d);
-	   ft_printf("31 %+ 10d\n", d);
+	ft_printf("12 %0-+d\n", d);
+	ft_printf("13 %0- d\n", d);
+	ft_printf("14 %0+ d\n", d);
+	ft_printf("15 %-+ d\n", d);
+	ft_printf("16 %0-+ d\n", d);
 
-	   ft_printf("32 %0-+10d\n", d);
-	   ft_printf("33 %0- 10d\n", d);
-	   ft_printf("34 %0+ 10d\n", d);
-	   ft_printf("35 %-+ 10d\n", d);
-	   ft_printf("36 %0-+ 10d\n", d);
+	ft_printf("21 %10d\n", d);
+	ft_printf("22 %010d\n", d);
+	ft_printf("23 %-10d\n", d);
+	ft_printf("24 %+10d\n", d);
+	ft_printf("25 % 10d\n", d);
 
-	   ft_printf("41 %10.7d\n", d);
-	   ft_printf("42 %010.7d\n", d);
-	   ft_printf("43 %-10.7d\n", d);
-	   ft_printf("44 %+10.7d\n", d);
-	   ft_printf("45 % 10.7d\n", d);
+	ft_printf("26 %0-10d\n", d);
+	ft_printf("27 %0+10d\n", d);
+	ft_printf("28 %0 10d\n", d);
+	ft_printf("29 %-+10d\n", d);
+	ft_printf("30 %- 10d\n", d);
+	ft_printf("31 %+ 10d\n", d);
 
-	   ft_printf("46 %0-10.7d\n", d);
-	   ft_printf("47 %0+10.7d\n", d);
-	   ft_printf("48 %0 10.7d\n", d);
-	   ft_printf("49 %-+10.7d\n", d);
-	   ft_printf("50 %- 10.7d\n", d);
-	   ft_printf("51 %+ 10.7d\n", d);
+	ft_printf("32 %0-+10d\n", d);
+	ft_printf("33 %0- 10d\n", d);
+	ft_printf("34 %0+ 10d\n", d);
+	ft_printf("35 %-+ 10d\n", d);
+	ft_printf("36 %0-+ 10d\n", d);
 
-	   ft_printf("52 %0-+10.7d\n", d);
-	   ft_printf("53 %0- 10.7d\n", d);
-	   ft_printf("54 %0+ 10.7d\n", d);
-	   ft_printf("55 %-+ 10.7d\n", d);
-	   ft_printf("56 %0-+ 10.7d\n", d);
+	ft_printf("41 %10.7d\n", d);
+	ft_printf("42 %010.7d\n", d);
+	ft_printf("43 %-10.7d\n", d);
+	ft_printf("44 %+10.7d\n", d);
+	ft_printf("45 % 10.7d\n", d);
 
-	   d = -d;
-	   ft_printf("\nft_printf negtive_number:\n\n");
-	   ft_printf("01 %d\n", d);
-	   ft_printf("02 %0d\n", d);
-	   ft_printf("03 %-d\n", d);
-	   ft_printf("04 %+d\n", d);
-	   ft_printf("05 % d\n", d);
+	ft_printf("46 %0-10.7d\n", d);
+	ft_printf("47 %0+10.7d\n", d);
+	ft_printf("48 %0 10.7d\n", d);
+	ft_printf("49 %-+10.7d\n", d);
+	ft_printf("50 %- 10.7d\n", d);
+	ft_printf("51 %+ 10.7d\n", d);
 
-	   ft_printf("06 %0-d\n", d);
+	ft_printf("52 %0-+10.7d\n", d);
+	ft_printf("53 %0- 10.7d\n", d);
+	ft_printf("54 %0+ 10.7d\n", d);
+	ft_printf("55 %-+ 10.7d\n", d);
+	ft_printf("56 %0-+ 10.7d\n", d);
+
+	d = -d;
+	ft_printf("\nft_printf negtive_number:\n\n");
+	ft_printf("01 %d\n", d);
+	ft_printf("02 %0d\n", d);
+	ft_printf("03 %-d\n", d);
+	ft_printf("04 %+d\n", d);
+	ft_printf("05 % d\n", d);
+
+	ft_printf("06 %0-d\n", d);
 	ft_printf("07 %0+d\n", d);
 	ft_printf("08 %0 d\n", d);
 	ft_printf("09 %-+d\n", d);
@@ -324,6 +332,14 @@ int	main(int ac, char **av)
 	d = -d;
 	printf("printf:\n\n");
 	printf("你是豬\n");
+	
+	printf("00 %d\n", 2147483648);
+	printf("01 %d\n", -2147483648);
+	printf("02 % d\n", 42);
+	printf("03 % d\n", -42);
+	printf("04 %+d\n", 0);
+	printf("05 %03.2d\n", 0);
+	
 	printf("00 %d\n", 0);
 	printf("01 %d\n", d);
 	printf("02 %0d\n", d);
