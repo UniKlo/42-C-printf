@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/14 22:34:20 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/15 14:40:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void		p_di(t_block *blk)
 		act.nbr = blk->data.s_signed;
 	}
 //	printf("act.sign: %d\n", act.sign);
-	(!(blk->sign) &&  tmp > 0) ? act.sign = '\0' : 0;
+	(!(blk->sign) &&  tmp >= 0) ? act.sign = '\0' : 0;
 //	printf("(!(blk->sign) || tmp > 0): %d\n", (!(blk->sign) || tmp > 0));
 //	printf("act.sign: %d\n", act.sign);
 //	printf("sign_final: %d\n", !(!blk->sign || tmp > 0) && act.sign); 

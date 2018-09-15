@@ -6,14 +6,15 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 14:33:05 by khou              #+#    #+#             */
-/*   Updated: 2018/07/20 15:15:47 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/15 14:31:56 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(uintmax_t n, int fd)
 {
+/*
 	if (n == -2147483648)
 	{
 		ft_putstr_fd("-2147483648", fd);
@@ -24,6 +25,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd('-', fd);
 		n = -n;
 	}
+*/
 	if (n / 10 != 0)
 		ft_putnbr_fd(n / 10, fd);
 	ft_putchar_fd(n % 10 + '0', fd);

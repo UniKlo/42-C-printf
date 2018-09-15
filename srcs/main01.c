@@ -6,17 +6,17 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 11:19:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/14 22:27:24 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/15 14:39:59 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
-//#define TEST1 "pr: {%3.2d}\n", -1
-//#define TEST2 "ft: {%3.2d}\n", -1
+#define TEST1 "pr: {%03.2d}\n", 0
+#define TEST2 "ft: {%03.2d}\n", 0
 
 //#define TEST1 "pr: {%+10.5d}\n", 4242
 //#define TEST2 "ft: {%+10.5d}\n", 4242
-#define TEST1 "pr: {%+d}\n", 0
-#define TEST2 "ft: {%+d}\n", 0
+//#define TEST1 "pr: {%+d}\n", 0
+//#define TEST2 "ft: {%+d}\n", 0
 
 int	main(int argc, char **argv)
 {
