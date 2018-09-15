@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_diouxb.c                                         :+:      :+:    :+:   */
+/*   p_di.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/15 14:40:49 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/15 15:19:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,10 @@ void		p_di(t_block *blk)
 	act.zero < 0 ? act.zero = 0: 0;// +, -, 0
 //	printf("width: %d, precision: %d, len: %d\n", blk->width,blk->precision,act.length);
 //	printf("p_di,space: %d", act.space);
-	write_blk(blk, &act);
+	if (blk->precision < -1 && act.nbr == 0)
+		return ;
+	else if (blk->precision == 0  && act.nbr == 0)
+		return ;
+	else
+		write_blk(blk, &act);
 }

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/14 13:22:46 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/15 15:17:25 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ static int	precision(t_block *blk, char *blk_fmt)
 	{
 		blk->precision = ft_atoi(blk_fmt);//read all the nbr
 		while (ft_isdigit(blk_fmt[++x]));//exit on the last digit
+//		printf("blk->precision: %d\n", blk->precision);
 	}
 	else
-		blk->precision = 0;
+		blk->precision = -5;
 	
 	return (x);
 }
