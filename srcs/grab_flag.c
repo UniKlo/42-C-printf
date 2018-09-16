@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/15 15:17:25 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/15 16:48:16 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	precision(t_block *blk, char *blk_fmt)
 		while (ft_isdigit(blk_fmt[++x]));//exit on the last digit
 //		printf("blk->precision: %d\n", blk->precision);
 	}
-	else
+	else // there is '.' but no number
 		blk->precision = -5;
 	
 	return (x);

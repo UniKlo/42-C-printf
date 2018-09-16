@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/15 15:19:14 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/15 17:00:09 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ void	write_blk(t_block *blk, t_write *act)
 	//	while (1);
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
-		ft_putnbr(act->nbr);
+		if ((blk->precision < -1 || blk->precision == 0) && act->nbr == 0)
+			*blk->ret= *blk->ret - 1;
+		else
+			ft_putnbr(act->nbr);
 	}
 }
 
@@ -129,10 +132,11 @@ void		p_di(t_block *blk)
 	act.zero < 0 ? act.zero = 0: 0;// +, -, 0
 //	printf("width: %d, precision: %d, len: %d\n", blk->width,blk->precision,act.length);
 //	printf("p_di,space: %d", act.space);
-	if (blk->precision < -1 && act.nbr == 0)
-		return ;
-	else if (blk->precision == 0  && act.nbr == 0)
-		return ;
+	if ((blk->precision < -1 || blk->precision == 0) && act.nbr == 0)
+		if (act.space++ > 0)
+            write_blk(blk, &act);
+        else
+			return ;
 	else
 		write_blk(blk, &act);
 }
