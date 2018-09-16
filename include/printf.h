@@ -115,5 +115,5 @@ void		parse(t_print *all);
 void		grab_flag(t_block *blk,char *format, int *i);
 void		fmt_decimal(t_print *all, t_block *blk);
 //void		p_s(t_block *blk, union u_type *t, va_list ap);
-void		p_di(t_block *blk);
+void		p_diuoxX(t_block *blk);
 #endif

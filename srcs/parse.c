@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/14 13:46:41 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/16 01:56:06 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ t_fun_tbl	dispatch_table(char c)
 //	f['s'] = &p_s;
 //	f['S'] = &ft_printf_ls;
 //	f['p'] = &ft_printf_p;
-	f['d'] = &p_di;
-//	f['D'] = &ft_printf_uoxb;
-	f['i'] = &p_di;
-/*	f['o'] = &ft_printf_uoxb;
-	f['O'] = &ft_printf_uoxb;
-	f['u'] = &ft_printf_uoxb;
-	f['U'] = &ft_printf_uoxb;
-	f['x'] = &ft_printf_uoxb;
-	f['X'] = &ft_printf_uoxb;*/
+	f['d'] = &p_diuoxX;
+//	f['D'] = &p_diuoxX;
+	f['i'] = &p_diuoxX;
+	f['o'] = &p_diuoxX;
+	f['O'] = &p_diuoxX;
+	f['u'] = &p_diuoxX;
+	f['U'] = &p_diuoxX;
+	f['x'] = &p_diuoxX;
+	f['X'] = &p_diuoxX;
 /*	f['c'] = &ft_printf_c;
 	f['C'] = &ft_printf_c;
 	f['b'] = &ft_printf_diuoxb;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_di.c                                             :+:      :+:    :+:   */
+/*   p_diuoxX.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/15 17:00:09 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/16 01:55:37 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	write_blk(t_block *blk, t_write *act)
 	}
 }
 
-void		p_di(t_block *blk)
+void		p_diuoxX(t_block *blk)
 {
 	intmax_t	tmp;
 	t_write act;
@@ -102,7 +102,7 @@ void		p_di(t_block *blk)
 	establish_write(&act);
 	signed_lengh(blk);//got val in blk 
 	tmp = blk->data.s_signed;
-	if (tmp < 0)
+	if (blk->data.s_signed < 0)
 	{ 
 		act.sign = '-';
 		act.nbr = -blk->data.s_signed;
@@ -110,7 +110,7 @@ void		p_di(t_block *blk)
 	else
 	{
 		act.sign = '+'; 
-		act.nbr = blk->data.s_signed;
+		act.nbr = blk->data.un_signed;
 	}
 //	printf("act.sign: %d\n", act.sign);
 	(!(blk->sign) &&  tmp >= 0) ? act.sign = '\0' : 0;

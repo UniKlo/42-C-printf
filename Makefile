@@ -25,7 +25,7 @@ HEADER = include
 SOURCES = ft_printf.c \
 			parse.c \
 			grab_flag.c\
-			p_di.c\
+			p_diuoxX.c\
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
