@@ -104,6 +104,7 @@ typedef struct 				s_write
 	int				length;
 	int				space;
 	int				zero;
+	int				base;
 }							t_write;
 /*
 ** -----------------------------------------------------------------------------

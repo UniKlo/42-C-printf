@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/15 16:48:16 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/16 02:39:34 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 
 	if ((c == 's' || c == 'S'|| c == 'p' || c == 'd' || c == 'D' || c == 'i' 
 		 || c == 'o' || c == 'O' || c == 'u' || c == 'U'|| c == 'x' || c == 'X'
-		 || c == 'c' || c == 'C'
-		 //|| c == '%' || c == 'n' || c == 'e' || c == 'g' || c == 'G'
+		 || c == 'c' || c == 'C' || c == '%' 
+		 //|| c == 'n' || c == 'e' || c == 'g' || c == 'G'
 		 ) && (blk->specifier = c))
 		return (1);
 	printf("invalid directive from spe: %c\n", c);//not valid char
