@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 21:41:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/16 19:44:39 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/16 23:34:44 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void					ft_putchar(char c);
 void					ft_putchar_fd(char c, int fd);
 void					ft_putendl(char const *s);
 void					ft_putendl_fd(char const *s, int fd);
-void					ft_putnbr(uintmax_t nb, char base);
-void					ft_putnbr_fd(uintmax_t nb, char base, int fd);
+int					ft_putnbr(uintmax_t nb, char base);
+int					ft_putnbr_fd(uintmax_t nb, char base, int fd);
 void					ft_putstr(char const *s);
 void					ft_putstr_fd(char const *s, int fd);
 

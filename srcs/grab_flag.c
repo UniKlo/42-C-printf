@@ -78,6 +78,8 @@ static void	valid_flag(t_block *blk)
 {
 	blk->sign == 1 ? blk->prepend_space = false : 0;
 	blk->precision > 0 ? blk->prepend_zero = false : 0;
+	blk->specifier == 'u' ? blk->prepend_space = false : 0;
+	blk->specifier == 'u' ? blk->sign = false : 0;
 //	printf("valid precision: %d\n", blk->precision);
 //	printf("valid zero: %d\n", blk->prepend_zero);
 }
@@ -113,7 +115,8 @@ void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 		//		printf("invalid directive from flag: %c\n", blk_fmt[*i]);//not valid char
 	}
 //	printf("out zero: %d\n", blk->prepend_zero);
-	valid_flag(blk);
+//	valid_flag(blk);
 	specifier(blk, blk_fmt[*i]);
+	valid_flag(blk);
 //	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->prepend_zero, blk->prepend_space);
 }

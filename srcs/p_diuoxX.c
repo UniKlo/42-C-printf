@@ -6,28 +6,63 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/16 20:16:46 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/17 00:21:27 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	signed_lengh(t_block *blk)
+void	signed_lengh(t_block *blk, t_write *act)
 {
-	if (blk->length[0] == '\0')
-		blk->data.s_signed = (int)va_arg(*blk->ap, int);
-	else if (blk->length[0] == 'h' && blk->length[1] == 'h')
-		blk->data.s_signed = (char)va_arg(*blk->ap, int);
-	else if (blk->length[0] == 'h')
-		blk->data.s_signed = (short int)va_arg(*blk->ap, int);
-	else if (blk->length[0] == 'l' && blk->length[1] == 'l')
-		blk->data.s_signed = va_arg(*blk->ap, long long int);
-	else if (blk->length[0] == 'l')
-		blk->data.s_signed = va_arg(*blk->ap, long int);
-	else if (blk->length[0] == 'j')
-		blk->data.s_signed = va_arg(*blk->ap, intmax_t);
-	else if (blk->length[0] == 'z')
-		blk->data.s_signed = va_arg(*blk->ap, size_t);
+	act->sign = '+';
+	if (blk->specifier != 'u' && blk->specifier != 'x' && blk->specifier != 'X')
+	{
+		
+		if (blk->length[0] == '\0')
+			blk->data.s_signed = (int)va_arg(*blk->ap, int);
+		else if (blk->length[0] == 'h' && blk->length[1] == 'h')
+			blk->data.s_signed = (char)va_arg(*blk->ap, int);
+		else if (blk->length[0] == 'h')
+			blk->data.s_signed = (short int)va_arg(*blk->ap, int);
+		else if (blk->length[0] == 'l' && blk->length[1] == 'l')
+			blk->data.s_signed = va_arg(*blk->ap, long long int);
+		else if (blk->length[0] == 'l')
+			blk->data.s_signed = va_arg(*blk->ap, long int);
+		else if (blk->length[0] == 'j')
+			blk->data.s_signed = va_arg(*blk->ap, intmax_t);
+		else if (blk->length[0] == 'z')
+			blk->data.s_signed = va_arg(*blk->ap, size_t);
+		if (blk->data.s_signed < 0)
+		{ 
+			act->sign = '-';
+			act->nbr = -blk->data.s_signed;
+		}
+		else
+			act->nbr = blk->data.un_signed;
+
+		(!(blk->sign) && blk->data.s_signed >= 0) ? act->sign = '\0' : 0;
+	}
+	else
+	{
+		if (blk->length[0] == '\0')
+			blk->data.un_signed = (unsigned int)va_arg(*blk->ap, unsigned int);
+		else if (blk->length[0] == 'h' && blk->length[1] == 'h')
+			blk->data.un_signed = (unsigned char)va_arg(*blk->ap, unsigned int);
+		else if (blk->length[0] == 'h')
+			blk->data.un_signed = (unsigned short int)va_arg(*blk->ap, unsigned int);
+		else if (blk->length[0] == 'l' && blk->length[1] == 'l')
+			blk->data.un_signed = va_arg(*blk->ap, unsigned long long int);
+		else if (blk->length[0] == 'l')
+			blk->data.un_signed = va_arg(*blk->ap, unsigned long int);
+		else if (blk->length[0] == 'j')
+			blk->data.un_signed = va_arg(*blk->ap, uintmax_t);
+		else if (blk->length[0] == 'z')
+			blk->data.un_signed = va_arg(*blk->ap, size_t);
+		act->nbr = blk->data.un_signed;
+		!(blk->sign) ? act->sign = '\0' : 0;
+	}
+	// printf("blk->data.s_signed: %ju\n", blk->data.un_signed);
+	// printf("act.nbr: %d\n", act->nbr);
 }
 void	establish_write(t_write *act)
 {
@@ -58,7 +93,7 @@ void	write_blk(t_block *blk, t_write *act)
 	blk->prepend_space && act->space-- > 0 ? *blk->ret += 1 : 0;  
 	act->space < 0 ? act->space = 0: 0;
 //	printf("before ret: %d\n", *blk->ret);
-	*blk->ret +=  act->zero + act->space + act->length;
+	*blk->ret += act->zero + act->space;
 //	printf("final ret: %d\n", *blk->ret);
 //	printf("zero: %d, space: %d, len: %d\n", act->zero, act->space, act->length);
 	if (blk->left_align)
@@ -67,7 +102,7 @@ void	write_blk(t_block *blk, t_write *act)
 		blk->sign || blk->data.s_signed < 0 ? write(1, &act->sign, 1) : 0;
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
-		ft_putnbr(act->nbr, blk->specifier);
+		*blk->ret += ft_putnbr(act->nbr, blk->specifier);
 //		printf("space: %d", act->space);
 		while (act->space-- >0)
 			write(*blk->fd, " ", 1);
@@ -89,32 +124,34 @@ void	write_blk(t_block *blk, t_write *act)
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
 		if ((blk->precision < -1 || blk->precision == 0) && act->nbr == 0)
-			*blk->ret= *blk->ret - 1;
+//			*blk->ret= *blk->ret - 1;
+			return;
 		else
-			ft_putnbr(act->nbr, blk->specifier);
+		*blk->ret += ft_putnbr(act->nbr, blk->specifier);
 	}
+//	printf("ret: %d\n", *blk->ret);
 }
 
 void		p_diuoxX(t_block *blk)
 {
-	intmax_t	tmp;
+	uintmax_t	tmp;
 	t_write act;
 
 	establish_write(&act);
-	signed_lengh(blk);//got val in blk 
-	if (blk->data.s_signed < 0)
-	{ 
-		act.sign = '-';
-		act.nbr = -blk->data.s_signed;
-	}
-	else
-	{
-		act.sign = '+'; 
-		act.nbr = blk->data.un_signed;
-	}
-	(!(blk->sign) && blk->data.s_signed >= 0) ? act.sign = '\0' : 0;
-//	printf("act.sign: %d\n", act.sign);
-//	printf("sign_final: %d\n", !(!blk->sign || tmp > 0) && act.sign); 
+	signed_lengh(blk, &act);//got val in blk 
+	// if (blk->data.s_signed < 0)
+	// { 
+	// 	act.sign = '-';
+	// 	act.nbr = -blk->data.s_signed;
+	// }
+	// else
+	// {
+	// 	act.sign = '+'; 
+	// 	act.nbr = blk->data.un_signed;
+	// }
+	// (!(blk->sign) && blk->data.s_signed >= 0) ? act.sign = '\0' : 0;
+	// printf("act.sign: %d\n", act.sign);
+	// printf("sign_final: %d\n", !(!blk->sign || tmp > 0) && act.sign); 
 //	printf("base: %d\n", act.base);
 //	printf("specifier: %c\n", blk->precision);
 	tmp = act.nbr;
@@ -123,6 +160,7 @@ void		p_diuoxX(t_block *blk)
 		tmp /= 10;
 		act.length++;
 	}
+	// printf("act.nbr: %d\n", act.nbr);
 	(act.nbr == 0) ? act.length++ : 0;
 	act.space = blk->width - bigger(blk->precision, act.length);// +, -, 0
 //	printf("p_di,space: %d\n", act.space);
