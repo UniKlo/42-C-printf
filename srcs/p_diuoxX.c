@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/16 02:41:39 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/16 20:16:46 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	write_blk(t_block *blk, t_write *act)
 		blk->sign || blk->data.s_signed < 0 ? write(1, &act->sign, 1) : 0;
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
-		ft_putnbr(act->nbr, act->base);
+		ft_putnbr(act->nbr, blk->specifier);
 //		printf("space: %d", act->space);
 		while (act->space-- >0)
 			write(*blk->fd, " ", 1);
@@ -91,24 +91,17 @@ void	write_blk(t_block *blk, t_write *act)
 		if ((blk->precision < -1 || blk->precision == 0) && act->nbr == 0)
 			*blk->ret= *blk->ret - 1;
 		else
-			ft_putnbr(act->nbr, act->base);
+			ft_putnbr(act->nbr, blk->specifier);
 	}
 }
-void	base(t_block *blk, t_write *act)
-{
-	blk->specifier == 'o' ? act->base = 8 : 10;
-	blk->specifier == 'x' ? act->base = 16 : 10;
-	blk->specifier == 'X' ? act->base = 16 : 10;
-}
+
 void		p_diuoxX(t_block *blk)
 {
 	intmax_t	tmp;
 	t_write act;
 
 	establish_write(&act);
-	base(blk, &act);
 	signed_lengh(blk);//got val in blk 
-//	tmp = blk->data.s_signed;
 	if (blk->data.s_signed < 0)
 	{ 
 		act.sign = '-';
