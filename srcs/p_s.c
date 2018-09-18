@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 00:58:54 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 10:22:04 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ void		p_s(t_block *blk)
 	char	*s;
 	t_write		act;
 	establish_write(&act);
-	s =va_arg(*blk->ap, char*);//store the str in s
+	s = va_arg(*blk->ap, char *);//store the str in s
+	if (!s)
+		s = "(null)";
+//	printf("str: %s", s);
+//	while (1);
 	blk->precision == -1 ? act.length = ft_strlen(s) : blk->precision;
 	if (blk->precision > 0)
 	{
