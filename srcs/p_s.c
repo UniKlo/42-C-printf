@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/17 20:27:35 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 00:33:56 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void		p_s(t_block *blk)
 	establish_write(&act);
 	s =va_arg(*blk->ap, char*);//store the str in s
 	blk->precision == -1 ? act.length = ft_strlen(s) : blk->precision;
+	if (blk->precision > 0)
+	{
+		if (blk->precision > (int)ft_strlen(s))
+			act.length = ft_strlen(s);
+		else
+			act.length =blk->precision;
+	}
 	if (blk->width)
 		act.space = blk->width - bigger(blk->precision, act.length);
 //	printf("%d", *blk->ret);
