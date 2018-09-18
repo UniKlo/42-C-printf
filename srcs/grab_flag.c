@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/17 23:14:51 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 02:00:08 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	is_flag(t_block *blk, char c)
 {
 	if (!ft_strchr("#+-0 ", c))
 		return (0);
-	blk->alt_form == 1 || c == '#' ? blk->alt_form = true : false;
+	blk->hash == 1 || c == '#' ? blk->hash = true : false;
 	blk->sign == 1 || c == '+' ? blk->sign = true : false;
 	blk->left_align == 1 || c == '-' ? blk->left_align = true : false;
 	blk->prepend_zero == 1 || c == '0' ? blk->prepend_zero = true : false;

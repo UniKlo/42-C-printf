@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/17 23:16:46 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 02:00:52 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	establish(t_print *all, t_block *blk)
 	blk->sign = false;
 	blk->prepend_space = false;
 	blk->prepend_zero = false;
-	blk->alt_form = false;
+	blk->hash = false;
 	blk->width = 0;
 	blk->precision = -1;
 	blk->length[0] = '\0';//for char for len

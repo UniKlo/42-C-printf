@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/17 23:23:54 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 01:59:08 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct				s_print
 
 typedef struct              s_block
 {
-	bool	alt_form;
+	bool	hash;
 	bool	left_align;
 	bool	prepend_space;
 	bool	prepend_zero;
