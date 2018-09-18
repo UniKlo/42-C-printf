@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 02:00:08 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 11:05:21 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ static void	valid_all(t_block *blk)
         !ft_strcmp(blk->length, "h\0") ? ft_strcpy(blk->length, "l\0") : 0;
         blk->specifier = 'd';
     }
+	if (blk->specifier == 'p')
+    {
+		blk->hash = true;
+		blk->specifier = 'x';
+	}
+
+
 //	printf("T/F: %d\n", ft_strcmp(blk->length, "\0"));
 }
 
