@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/17 00:30:05 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/17 14:35:06 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,21 +139,6 @@ void		p_diuoxX(t_block *blk)
 
 	establish_write(&act);
 	signed_lengh(blk, &act);//got val in blk 
-	// if (blk->data.s_signed < 0)
-	// { 
-	// 	act.sign = '-';
-	// 	act.nbr = -blk->data.s_signed;
-	// }
-	// else
-	// {
-	// 	act.sign = '+'; 
-	// 	act.nbr = blk->data.un_signed;
-	// }
-	// (!(blk->sign) && blk->data.s_signed >= 0) ? act.sign = '\0' : 0;
-	// printf("act.sign: %d\n", act.sign);
-	// printf("sign_final: %d\n", !(!blk->sign || tmp > 0) && act.sign); 
-//	printf("base: %d\n", act.base);
-//	printf("specifier: %c\n", blk->precision);
 	tmp = act.nbr;
 	while (tmp)
 	{

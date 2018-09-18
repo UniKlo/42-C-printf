@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/16 01:56:06 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/17 17:22:09 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ t_fun_tbl	dispatch_table(char c)
 	f['U'] = &p_diuoxX;
 	f['x'] = &p_diuoxX;
 	f['X'] = &p_diuoxX;
-/*	f['c'] = &ft_printf_c;
-	f['C'] = &ft_printf_c;
-	f['b'] = &ft_printf_diuoxb;
-	f['B'] = &ft_printf_diuoxb;*/
+	f['c'] = &p_c;
+	f['C'] = &p_c;
+	f['%'] = &p_c;
+/* 	f['b'] = &ft_printf_diuoxb; */
+/* 	f['B'] = &ft_printf_diuoxb; */
 	return (f[(int)c]);
 }
 

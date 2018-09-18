@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/16 02:39:34 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/17 15:38:56 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ static int length(t_block *blk, char *blk_fmt)
 	else if (blk_fmt[x] == 'j' && (x = x + 1))
 		ft_strcpy(blk->length, "j\0");
 	return (x - 1);
+/* 	if (blk->specifier == 'U') */
+/* 		{ */
+/* 			!(blk_fmt[x] == 'h') ? ft_strcpy(blk->length, "l\0") : 0; */
+/* 			blk->specifier = 'u'; */
+/* 		} */
 }
 
 static int	width(t_block *blk, char *blk_fmt)
@@ -74,7 +79,7 @@ static int	is_flag(t_block *blk, char c)
 	return (1);
 }
 
-static void	valid_flag(t_block *blk)
+static void	valid_all(t_block *blk)
 {
 	blk->sign == 1 ? blk->prepend_space = false : 0;
 	blk->precision > 0 ? blk->prepend_zero = false : 0;
@@ -82,6 +87,13 @@ static void	valid_flag(t_block *blk)
 	blk->specifier == 'u' ? blk->sign = false : 0;
 //	printf("valid precision: %d\n", blk->precision);
 //	printf("valid zero: %d\n", blk->prepend_zero);
+    if (blk->specifier == 'U')
+	{
+		!ft_strcmp(blk->length, "\0") ? ft_strcpy(blk->length, "l\0") : 0;
+		!ft_strcmp(blk->length, "h\0") ? ft_strcpy(blk->length, "l\0") : 0;
+		blk->specifier = 'u';
+	}
+//	printf("T/F: %d\n", ft_strcmp(blk->length, "\0"));
 }
 
 
@@ -117,6 +129,7 @@ void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 //	printf("out zero: %d\n", blk->prepend_zero);
 //	valid_flag(blk);
 	specifier(blk, blk_fmt[*i]);
-	valid_flag(blk);
+	valid_all(blk);
 //	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->prepend_zero, blk->prepend_space);
+//	printf("specifier: %c, lengh: %s\n", blk->specifier, blk->length);
 }
