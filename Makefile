@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/17 15:51:58 by khou             ###   ########.fr        #
+#    Updated: 2018/09/17 20:41:31 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -27,18 +27,20 @@ SOURCES = ft_printf.c \
 			grab_flag.c\
 			p_diuoxX.c\
 			p_c.c\
+			p_s.c\
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
 
 OBJS = $(addprefix $(DIR_O)/, $(SOURCES:.c=.o))
 
-all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C libft
 	@cp libft/libft.a ./$(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
+
+all: $(NAME)
 
 $(DIR_O)/%.o: $(DIR_S)/%.c
 	@mkdir -p obj
