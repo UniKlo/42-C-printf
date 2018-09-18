@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 01:59:08 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 11:09:18 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void		fmt_decimal(t_print *all, t_block *blk);
 void		p_diuoxX(t_block *blk);
 void        p_c(t_block *blk);
 void        p_s(t_block *blk);
-void        p_p(t_block *blk);
+//void        p_p(t_block *blk);
 int			bigger(int a, int b);
 void		establish_write(t_write *act);
 
