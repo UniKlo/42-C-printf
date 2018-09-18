@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 11:19:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 00:01:06 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 00:37:37 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -22,8 +22,8 @@
 //#define TEST1 "pr: {%s}\n", "this"
 //#define TEST2 "ft: {%s}\n", "this"
 
-#define TEST1 "pr: {%-.2s}\n", "this is a string"
-#define TEST2 "ft: {%-.2s}\n", "this is a string"
+#define TEST1 "pr: {%5.2s}\n", ""
+#define TEST2 "ft: {%5.2s}\n", ""
 
 
 

@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 00:33:56 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 00:58:54 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ void		p_s(t_block *blk)
 	blk->precision == -1 ? act.length = ft_strlen(s) : blk->precision;
 	if (blk->precision > 0)
 	{
-		if (blk->precision > (int)ft_strlen(s))
+		if ((blk->precision > (int)ft_strlen(s)) && ft_strlen(s) > 0)
 			act.length = ft_strlen(s);
 		else
 			act.length =blk->precision;
 	}
-	if (blk->width)
+//	printf("%d", act.length);
+	if (blk->width && ft_strlen(s) > 0)
 		act.space = blk->width - bigger(blk->precision, act.length);
+	else
+		act.space = blk->width;
 //	printf("%d", *blk->ret);
 	*blk->ret =  *blk->ret + act.space;
 //!blk->precision 
@@ -50,24 +53,4 @@ void		p_s(t_block *blk)
         }
 		*blk->ret += ft_putstr(s, act.length);
 	}
-//	printf("after: %d\n", *blk->ret);
-
-//	*blk->ret += ft_putstr(s, 3);
-/* 	if (!t->s && p->pre == -1) */
-/* 		t->s = "(null)"; */
-/* 	else if (!t->s) */
-/* 		t->s = ""; */
-/* 	else if (p->pre > -1) */
-/* 		t->s = ft_strsub(t->s, 0, p->pre); */
-/* 	if (p->left == 1) */
-/* 		buf_s(p, t->s, ft_strlen(t->s)); */
-/* 	while (++i < (int)(p->min_w - ft_strlen(t->s))) */
-/* 	{ */
-/* 		if (p->zero == 1) */
-/* 			buf_c(p, '0'); */
-/* 		else */
-/* 			buf_c(p, ' '); */
-/* 	} */
-/* 	if (p->left != 1) */
-/* 		buf_s(p, t->s, ft_strlen(t->s)); */
 }
