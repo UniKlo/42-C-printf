@@ -6,15 +6,15 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 11:19:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 10:15:28 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 10:51:01 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
 //#define TEST1 "pr: {%+d} {%+.d}\n",  0,0
 //#define TEST2 "ft: {%+d} {%+.d}\n",  0,0
 
-#define TEST1 "pr: {%s}\n", NULL 
-#define TEST2 "ft: {%s}\n", NULL
+#define TEST1 "pr: {%#x}\n", 0 
+#define TEST2 "ft: {%#x}\n", 0
 
 //#define TEST1 "pr: {%#o}\n", 0
 //#define TEST2 "ft: {%#o}\n", 0

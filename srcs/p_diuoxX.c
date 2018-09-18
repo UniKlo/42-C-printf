@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 10:07:08 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/18 10:53:51 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,17 @@ int	bigger(int a, int b)
 
 void	write_blk(t_block *blk, t_write *act)
 {
+	char *s;
+
+	s = "\0";
+    if (blk->hash)
+    {
+        blk->specifier == 'x' ? s = "0x" : 0;
+        blk->specifier == 'X' ? s = "0X" : 0;
+		if (act->space - 2 >= 0 && *s)
+			act->space -= 2;
+		*s && act->nbr == 0 ? s = "\0" : 0;
+	}
 	act->space <= 0 && act->sign ? *blk->ret += 1 : 0;
 	act->sign && act->space-- > 0 ? *blk->ret += 1 : 0;
 	blk->prepend_space && act->sign ? blk->prepend_space = false : 0;
@@ -94,6 +105,7 @@ void	write_blk(t_block *blk, t_write *act)
 	{
 		(blk->prepend_space) && write(*blk->fd, " ", 1);
 		act->sign || blk->data.s_signed < 0 ? write(1, &act->sign, 1) : 0;
+		*blk->ret += ft_putstr(s, ft_strlen(s));
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
 		*blk->ret += ft_putnbr(act->nbr, blk->specifier);
@@ -105,12 +117,13 @@ void	write_blk(t_block *blk, t_write *act)
 		(blk->prepend_space) && write(*blk->fd, " ", 1);
 		blk->prepend_zero && act->sign ? write(1, &act->sign, 1) : 0;
 		//	printf("act->sign: %c\n", act->sign);
+		blk->prepend_zero ? *blk->ret += ft_putstr(s, ft_strlen(s)) : 0;
 		while (act->space-- >0)
 		{
 			blk->prepend_zero ? write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
 
 		}
-
+		!blk->prepend_zero ? *blk->ret += ft_putstr(s, ft_strlen(s)) : 0 ;
 		!blk->prepend_zero && act->sign ? write(1, &act->sign, 1) : 0;
 		//printf("T/F: %d\n", !blk->prepend_zero && act->sign);
 		while (act->zero-- > 0)
