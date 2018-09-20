@@ -6,13 +6,14 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 11:19:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 13:14:03 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 13:26:26 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
 #include <limits.h>
-//#define TEST1 "pr: {%+d} {%+.d}\n",  0,0
-//#define TEST2 "ft: {%+d} {%+.d}\n",  0,0
+
+#define TEST1 "pr: {%#x} {%#.o}\n",  0,0
+#define TEST2 "ft: {%#x} {%#.o}\n",  0,0
 
 wchar_t 	*a = "ææç";
 
@@ -25,8 +26,8 @@ wchar_t 	*a = "ææç";
 //#define TEST1 "pr: {%%  %}\n", "this"
 //#define TEST2 "ft: {%%  %}\n", "this"
 
-#define TEST1 "pr: {%#5o}\n", 0
-#define TEST2 "ft: {%#5o}\n", 0
+//#define TEST1 "pr: {%#5o}\n", 0
+//#define TEST2 "ft: {%#5o}\n", 0
 
 
 
