@@ -37,7 +37,7 @@ OBJS = $(addprefix $(DIR_O)/, $(SOURCES:.c=.o))
 
 $(NAME): $(OBJS)
 	@make -C libft
-#	@cp libft/libft.a ./$(NAME)
+	@cp libft/libft.a ./$(NAME)
 	@cp libft/libft.a ./
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
