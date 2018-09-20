@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 12:52:28 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 13:14:45 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void		p_diuoxX(t_block *blk)
 		if (blk->width > 0 && act.nbr == 0)
 		{
 			blk->prepend_space = false;
-			act.sign = '0';
+			act.sign = '\0';
 		}
 //		!blk->precision ? blk->prepend_spase = false : 0;
 //		printf("blk->precision: %d", blk->prepend_space);
