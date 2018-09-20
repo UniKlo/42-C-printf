@@ -6,17 +6,35 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 15:48:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/19 21:42:02 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 10:55:15 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_putwchar( wchar_t C)
+void    ft_putwchar(wchar_t wc)
 {
-	write(1, &C, 1);
+    if (wc <= 0x7F)
+        ft_putchar(wc);
+    else if (wc <= 0x7FF)
+    {
+        ft_putchar((wc >> 6) + 0xC0);
+        ft_putchar((wc & 0x3F) + 0x80);
+    }
+    else if (wc <= 0xFFFF)
+    {
+        ft_putchar((wc >> 12) + 0xE0);
+        ft_putchar(((wc >> 6) & 0x3F) + 0x80);
+        ft_putchar((wc & 0x3F) + 0x80);
+    }
+    else if (wc <= 0x10FFFF)
+    {
+        ft_putchar((wc >> 18) + 0xF0);
+        ft_putchar(((wc >> 12) & 0x3F) + 0x80);
+        ft_putchar(((wc >> 6) & 0x3F) + 0x80);
+        ft_putchar((wc & 0x3F) + 0x80);
+    }
 }
-
 
 /*
 void	ft_printf_lc(t_block *blk)

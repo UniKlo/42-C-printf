@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/19 01:33:18 by khou             ###   ########.fr        #
+#    Updated: 2018/09/20 10:43:37 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,7 @@ DIR_S = srcs
 
 DIR_O = obj
 
-HEADER = include
+HEADER = includes
 
 SOURCES = ft_printf.c \
 			parse.c \
@@ -28,6 +28,7 @@ SOURCES = ft_printf.c \
 			p_diuoxX.c\
 			p_c.c\
 			p_s.c\
+			undef.c\
 
 
 SRCS = $(addprefix $(DIR_S)/, $(SOURCES))

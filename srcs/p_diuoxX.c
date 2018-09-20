@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/18 10:53:51 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 10:44:29 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	signed_lengh(t_block *blk, t_write *act)
 {
+//	static char		*len = "\0";
+
 	act->sign = '+';
 	if (!ft_strchr("uUxX", blk->specifier))
 	{
@@ -39,7 +41,6 @@ void	signed_lengh(t_block *blk, t_write *act)
 		}
 		else
 			act->nbr = blk->data.un_signed;
-
 		(!(blk->sign) && blk->data.s_signed >= 0) ? act->sign = '\0' : 0;
 	}
 	else

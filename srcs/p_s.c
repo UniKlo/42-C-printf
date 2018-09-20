@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/19 22:13:38 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 10:59:51 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,11 @@ static int	ft_putwstr(wchar_t *ls, int len)
 		else if (*ls <= 0x10FFFF)
 			i += 4;
 		if (i <= len)
-			ft_putwchar(*ls++);
+			ft_putchar(*ls++);
 //		count++;
 	}
 	return (i);
 }
-/*
-static int	ls_pre(wchar_t *str, int pre, int temp)
-{
-	if (*str == '\0' || pre == 0)
-		return (temp);
-	else if (*str <= 0x007F)
-		return (ls_pre(str + 1, pre - 1, temp + 1));
-	else if (*str <= 0x07FF && pre >= 2)
-		return (ls_pre(str + 1, pre - 2, temp + 2));
-	else if (*str <= 0xFFFF && pre >= 3)
-		return (ls_pre(str + 1, pre - 3, temp + 3));
-	else if (*str <= 0x10FFFF && pre >= 4)
-		return (ls_pre(str + 1, pre - 4, temp + 4));
-	else
-		return (temp);
-}
-*/
 
 static int	ls_len(wchar_t *ls) //length in byte
 {
