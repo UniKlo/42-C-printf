@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 00:25:15 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 12:08:01 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef void	(*t_fun_tbl)(t_block *blk);
 
 typedef struct 				s_write
 {
-	char 					sign;
+	char 					sign[3];
 	uintmax_t				nbr;
 	int				length;
 	int				space;
@@ -123,7 +123,7 @@ void        p_ls(t_block *blk);
 //void        p_p(t_block *blk);
 int			bigger(int a, int b);
 void		establish_write(t_write *act);
-void    ft_putwchar(wchar_t C);
+//void    ft_putwchar(wchar_t C);
 void	undef(t_block *blk);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/20 10:43:37 by khou             ###   ########.fr        #
+#    Updated: 2018/09/20 11:41:13 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -58,7 +58,7 @@ norme:
 
 test: $(SRCS)
 	@make -C libft
-	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main.c
+	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main_online.c
 
 test01: $(SRCS)
 	@make -C libft

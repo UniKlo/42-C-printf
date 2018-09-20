@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 10:44:29 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 12:10:53 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	write_blk(t_block *blk, t_write *act)
         blk->specifier == 'X' ? s = "0X" : 0;
 		if (act->space - 2 >= 0 && *s)
 			act->space -= 2;
-		*s && act->nbr == 0 ? s = "\0" : 0;
+//		*s && act->nbr == 0 ? s = "\0" : 0;
 	}
 	act->space <= 0 && act->sign ? *blk->ret += 1 : 0;
 	act->sign && act->space-- > 0 ? *blk->ret += 1 : 0;
