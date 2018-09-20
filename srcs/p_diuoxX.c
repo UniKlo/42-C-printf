@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 13:14:45 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 13:16:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void		p_diuoxX(t_block *blk)
 		//blk->specifier == 'X' ? sign = '0X' : 0;
 		blk->specifier == 'o' ? act.sign = '0' : 0;
 		blk->specifier == 'O' ? act.sign = '0' : 0;
-		if (blk->width > 0 && act.nbr == 0)
+		if (act.nbr == 0)
 		{
 			blk->prepend_space = false;
 			act.sign = '\0';
