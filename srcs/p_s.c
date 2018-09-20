@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/19 21:49:19 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/19 22:13:38 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void        p_ls(t_block *blk)
         else
             act.length =blk->precision;
     }
-	printf("act.length: %d\n", act.length);
+//	printf("act.length: %d\n", act.length);
 
     if (blk->width && ls_len(ls) > 0)
         act.space = blk->width - bigger(blk->precision, act.length);
