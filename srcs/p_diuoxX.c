@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 12:10:53 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 12:52:28 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	signed_lengh(t_block *blk, t_write *act)
 //	static char		*len = "\0";
 
 	act->sign = '+';
-	if (!ft_strchr("uUxX", blk->specifier))
+	if (!ft_strchr("uUxXo", blk->specifier))
 	{
 		
 		if (blk->length[0] == '\0')

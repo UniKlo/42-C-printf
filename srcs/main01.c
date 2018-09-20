@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 11:19:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 12:05:40 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 12:44:38 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -25,8 +25,8 @@ wchar_t 	*a = "ææç";
 //#define TEST1 "pr: {%%  %}\n", "this"
 //#define TEST2 "ft: {%%  %}\n", "this"
 
-#define TEST1 "pr: {%p}\n", 0
-#define TEST2 "ft: {%p}\n", 0
+#define TEST1 "pr: {%o}\n", -8000
+#define TEST2 "ft: {%o}\n", -8000
 
 
 
