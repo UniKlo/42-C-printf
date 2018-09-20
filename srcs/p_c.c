@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 15:48:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 10:55:15 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/20 12:27:01 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	p_c(t_block *blk)
 {
 	char	c;
 
-	blk->specifier == 'c' ? c = va_arg(*blk->ap, int) : 0;
+	blk->specifier == 'c' || blk->specifier == 'C' ? c = va_arg(*blk->ap, int) : 0;
 	//c = va_arg(*blk->ap, int);
 	blk->specifier == '%' ? c = '%' : 0;
 //	printf("ret: %d\n", *blk->ret);
