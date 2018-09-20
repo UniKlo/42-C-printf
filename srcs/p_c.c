@@ -6,11 +6,27 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 15:48:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/17 17:50:48 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/19 21:42:02 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+void	ft_putwchar( wchar_t C)
+{
+	write(1, &C, 1);
+}
+
+
+/*
+void	ft_printf_lc(t_block *blk)
+{
+	int	len;
+	int i;
+
+	i = -1;
+	t->lc = (wchar_t)va_arg(ap, wint_t);
+	}*/
 
 void	p_c(t_block *blk)
 {

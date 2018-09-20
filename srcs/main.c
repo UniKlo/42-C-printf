@@ -6,7 +6,7 @@
 /*   By: jtsai <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 14:30:23 by jtsai             #+#    #+#             */
-/*   Updated: 2018/09/13 19:35:51 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/19 01:35:03 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int ac, char **av)
 	   printf("%d\n", L'我');
 	   */
 
-/*
+
 	   wchar_t	*w;
 	   w = L"你是豬嗎";
 
@@ -133,8 +133,8 @@ int	main(int ac, char **av)
 	   }
 	   printf("--------------------------------------\n");
 	   printf("%ls\n", L"我是豬嗎");
-	   printf("%lc\n", 20320);
-*/
+//	   printf("%lc\n", 20320);
+
 
 	// ----------
 	/*
@@ -203,7 +203,7 @@ int	main(int ac, char **av)
 
 	ft_printf("%%123 %s %s%s!\n", NULL, "abc", " start");
 	ft_printf("你是豬\n");*/
-
+/*
 	ft_printf("00 %d\n", 2147483648);
 	ft_printf("01 %d\n", -2147483648);
 	ft_printf("02 % d\n", 42);
@@ -326,7 +326,7 @@ int	main(int ac, char **av)
 	ft_printf("53 %0- 10.7d\n", d);
 	ft_printf("54 %0+ 10.7d\n", d);
 	ft_printf("55 %-+ 10.7d\n", d);
-	ft_printf("56 %0-+ 10.7d\n", d);
+	ft_printf("56 %0-+ 10.7d\n", d); */
 
 /*	printf("---------------------------------------------------\n");
 	d = -d;

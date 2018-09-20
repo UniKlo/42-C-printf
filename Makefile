@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/18 11:09:39 by khou             ###   ########.fr        #
+#    Updated: 2018/09/19 01:33:18 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -37,7 +37,8 @@ OBJS = $(addprefix $(DIR_O)/, $(SOURCES:.c=.o))
 
 $(NAME): $(OBJS)
 	@make -C libft
-	@cp libft/libft.a ./$(NAME)
+#	@cp libft/libft.a ./$(NAME)
+	@cp libft/libft.a ./
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
