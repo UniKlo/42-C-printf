@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/20 11:41:13 by khou             ###   ########.fr        #
+#    Updated: 2018/09/21 01:03:51 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ C = clang
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror -O2
+FLAGS = -Wall -Wextra -Werror
 
 DIR_S = srcs
 
@@ -22,64 +22,24 @@ DIR_O = obj
 
 HEADER = includes
 
-SOURCES = ft_printf.c \
-			parse.c \
-			grab_flag.c\
-			p_diuoxX.c\
-			p_c.c\
-			p_s.c\
-			undef.c\
-
-
-SRCS = $(addprefix $(DIR_S)/, $(SOURCES))
-
-OBJS = $(addprefix $(DIR_O)/, $(SOURCES:.c=.o))
-
-
-$(NAME): $(OBJS)
-	@make -C libft
-	@cp libft/libft.a ./$(NAME)
-	@cp libft/libft.a ./
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+SOURCES = $(wildcard srcs/*.c)
 
 all: $(NAME)
 
-$(DIR_O)/%.o: $(DIR_S)/%.c
-	@mkdir -p obj
-	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
-
-norme:
-	norminette ./libft/
-	@echo
-	norminette ./$(HEADER)/
-	@echo
-	norminette ./$(DIR_S)/
-
-test: $(SRCS)
-	@make -C libft
-	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main_online.c
-
-test01: $(SRCS)
-	@make -C libft
-	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main01.c
+$(NAME): $(SRCS)
+#	@make -C libft
+#	@cp libft/libft.a ./$(NAME)
+#	@cp libft/libft.a ./
+#	@$(CC) $(FLAGS) -I $(HEADER) -c $(DIR_S)/*.c
+	@$(CC) $(FLAGS) -I $(HEADER) -c $(SOURCES)
+	@ar rc $(NAME) *.o
+	@ranlib $(NAME)
 
 clean:
-	@rm -f $(OBJS)
-	@rm -rf $(DIR_O)
-	@make clean -C libft
-	@echo "cleaned up objects"
+	@rm -f *.o
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f *~
-	@rm -f \#*\#
-	@rm -f srcs/*~
-	@rm -f srcs/\#*\#
-	@rm -f a.out
-	@rm -rf *dSYM
-	@make fclean -C libft
-	@echo "reset"
 
 re: fclean all
 
