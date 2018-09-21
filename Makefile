@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/21 01:18:01 by khou             ###   ########.fr        #
+#    Updated: 2018/09/21 01:34:30 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,9 +31,9 @@ $(NAME): $(SRCS)
 #	@cp libft/libft.a ./$(NAME)
 #	@cp libft/libft.a ./
 #	@$(CC) $(FLAGS) -I $(HEADER) -c $(DIR_S)/*.c
-	@$(CC) $(FLAGS) -I $(HEADER) -c $(SOURCES)
-	@ar rc $(NAME) *.o
-	@ranlib $(NAME)
+	$(CC) $(FLAGS) -I $(HEADER) -c $(SOURCES)
+	ar rc $(NAME) *.o
+	ranlib $(NAME)
 
 clean:
 	@rm -f *.o
