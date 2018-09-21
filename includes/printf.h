@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/21 01:14:24 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/21 01:27:45 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef struct 				s_write
 ** -------------------------------- Sources ------------------------------------
 ** -----------------------------------------------------------------------------
 */
-int                     ft_printf(const char *format, ...);
+int         ft_printf(const char *format, ...);
 void		parse(t_print *all);
 void		grab_flag(t_block *blk,char *format, int *i);
 void		fmt_decimal(t_print *all, t_block *blk);
