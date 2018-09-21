@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/21 01:51:40 by khou             ###   ########.fr        #
+#    Updated: 2018/09/21 01:54:29 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,7 +22,7 @@ DIR_O = obj
 
 HEADER = include
 
-SOURCES = $(wildcard srcs/*.c)
+SOURCES = srcs/*.c #$(wildcard srcs/*.c)
 
 all: $(NAME)
 
