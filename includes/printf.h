@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 23:28:35 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/21 01:14:24 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 ** -------------------------- External Headers ---------------------------------
 */
 
-# include "libft.h"
+//# include "libft.h"
 # include <stdarg.h>
 # include <errno.h>
 # include <stdio.h>
 # include <stdbool.h>
 # include <wchar.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 /*
 ** ----------------------------- Union  Type  ----------------------------------

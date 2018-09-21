@@ -6,11 +6,12 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 01:30:38 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/21 01:13:15 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "libft.h"
 
 static int length(t_block *blk, char *blk_fmt)
 {

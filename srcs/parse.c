@@ -6,11 +6,12 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 01:17:55 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/21 01:12:44 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "libft.h"
 
 static void	establish(t_print *all, t_block *blk)
 {
