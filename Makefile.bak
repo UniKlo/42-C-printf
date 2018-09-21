@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/21 01:18:01 by khou             ###   ########.fr        #
+#    Updated: 2018/09/21 00:43:20 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ C = clang
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 DIR_S = srcs
 
@@ -35,11 +35,33 @@ $(NAME): $(SRCS)
 	@ar rc $(NAME) *.o
 	@ranlib $(NAME)
 
+norme:
+	norminette ./libft/
+	@echo
+	norminette ./$(HEADER)/
+	@echo
+	norminette ./$(DIR_S)/
+
+test: all
+	@$(CC) -fsanitize=address $(NAME) -I $(HEADER) -g ../../Downloads/main.c
+
+test01: $(SRCS)
+	@make -C libft
+	@$(CC) libft/libft.a -I $(HEADER) -g $(SRCS) srcs/main01.c
+
 clean:
 	@rm -f *.o
+	@echo "cleaned up objects"
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f *~
+	@rm -f \#*\#
+	@rm -f srcs/*~
+	@rm -f srcs/\#*\#
+	@rm -f a.out
+	@rm -rf *dSYM
+	@echo "reset"
 
 re: fclean all
 
