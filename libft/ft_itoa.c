@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 15:46:51 by khou              #+#    #+#             */
-/*   Updated: 2018/07/19 10:35:38 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:35:23 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static int	num_len(int n)
 {

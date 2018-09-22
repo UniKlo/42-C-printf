@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 10:52:15 by khou              #+#    #+#             */
-/*   Updated: 2018/07/20 16:39:21 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:35:22 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 char	*ft_strmap(char const *s, char (*f)(char))
 {

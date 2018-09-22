@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 20:43:15 by khou              #+#    #+#             */
-/*   Updated: 2018/07/18 23:20:13 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:35:55 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static char	*clr(const char *str)
 {

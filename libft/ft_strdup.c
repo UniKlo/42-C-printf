@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 22:29:42 by khou              #+#    #+#             */
-/*   Updated: 2018/07/11 17:17:50 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:35:22 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 char	*ft_strdup(char const *s)
 {

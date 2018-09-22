@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 11:46:43 by khou              #+#    #+#             */
-/*   Updated: 2018/07/30 17:15:09 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:35:20 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static int	ft_store_word(const char *str, int i, char **ret, char c)
 {
