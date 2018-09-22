@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/22 16:19:15 by khou             ###   ########.fr        #
+#    Updated: 2018/09/22 16:24:21 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -34,7 +34,7 @@ SRCS = $(addprefix $(DIR_L), $(LIBFT)) $(addprefix $(DIR_S), $(SOURCES))
 
 OBJS = $(SRCS:.c=.o)
 
-INC = $(addprefix $(DIR_INC), $(HEADER)) libft/libft.h
+INC = $(addprefix $(DIR_INC), $(HEADER))
 
 all: $(NAME)
 
@@ -45,7 +45,7 @@ $(NAME): $(OBJS)
 #	@ranlib $(NAME)
 
 ./%.o: ./%.c $(INC)
-	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
+	@$(CC) $(FLAGS) -I $(HEADER) libft/libft.h -o $@ -c $<
 
 norme:
 	norminette ./libft/
