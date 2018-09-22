@@ -6,13 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/21 01:12:35 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:17:06 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
-
+#include "../include/printf.h"
 
 static int	ft_putwstr(wchar_t *ls, int len)
 {

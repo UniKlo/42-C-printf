@@ -6,12 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 15:48:19 by khou              #+#    #+#             */
-/*   Updated: 2018/09/21 01:13:07 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:16:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "../include/printf.h"
 
 void    ft_putwchar(wchar_t wc)
 {

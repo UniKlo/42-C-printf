@@ -6,12 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/21 01:13:15 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:16:27 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "../include/printf.h"
 
 static int length(t_block *blk, char *blk_fmt)
 {
@@ -31,11 +30,6 @@ static int length(t_block *blk, char *blk_fmt)
 	else if (blk_fmt[x] == 'j' && (x = x + 1))
 		ft_strcpy(blk->length, "j\0");
 	return (x - 1);
-/* 	if (blk->specifier == 'U') */
-/* 		{ */
-/* 			!(blk_fmt[x] == 'h') ? ft_strcpy(blk->length, "l\0") : 0; */
-/* 			blk->specifier = 'u'; */
-/* 		} */
 }
 
 static int	width(t_block *blk, char *blk_fmt)
@@ -126,7 +120,7 @@ static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 		 ) && (blk->specifier = c))
 		return (1);
 //	printf("invalid directive from spe: %c\n", c);//not valid char
-	printf("blk->specifier: %c\n", blk->specifier);
+//	printf("blk->specifier: %c\n", blk->specifier);
 	return (1);
 }
 
@@ -148,6 +142,8 @@ void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 	}
 //	printf("out zero: %d\n", blk->prepend_zero);
 //	valid_flag(blk);
+//	!blk_fmt[++*i] ? return : 0 ;
+//	printf("T/F: %d\n", !blk_fmt[++*i]);
 	specifier(blk, blk_fmt[*i]);
 	valid_all(blk);
 //	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->prepend_zero, blk->prepend_space);

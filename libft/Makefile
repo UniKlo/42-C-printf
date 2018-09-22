@@ -5,42 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/21 01:55:14 by khou             ###   ########.fr        #
+#    Created: 2018/09/22 00:09:34 by khou              #+#    #+#              #
+#    Updated: 2018/09/22 00:09:43 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-C = clang
-
-NAME = libftprintf.a
-
-FLAGS = -Wall -Wextra -Werror
-
-DIR_S = srcs
-
-DIR_O = obj
-
-HEADER = include/
-
-SOURCES = $(wildcard srcs/*.c)
+NAME = libft.a
+CFLAG = -g -Wall -Werror -Wextra -c
+SRC = $(wildcard *.c)
+OFILES = *.o
 
 all: $(NAME)
 
-$(NAME): $(SRCS)
-#	@make -C libft
-#	@cp libft/libft.a ./$(NAME)
-#	@cp libft/libft.a ./
-#	@$(CC) $(FLAGS) -I $(HEADER) -c $(DIR_S)/*.c
-	$(CC) $(FLAGS) -I $(HEADER) -c $(SOURCES)
-	ar rc $(NAME) *.o
-	ranlib $(NAME)
+$(NAME): $(SRC)
+		@gcc $(CFLAG) $(SRC)
+		@ar rc $(NAME) $(OFILES)
 
 clean:
-	@rm -f *.o
+		@/bin/rm -f $(OFILES)
 
 fclean: clean
-	@rm -f $(NAME)
+		@/bin/rm -f $(NAME)
+		@/bin/rm -f *~
+		@/bin/rm -f \#*\#
 
 re: fclean all
 
-.PHONY: fclean re norme all clean
+.PHONY: clean fclean all re

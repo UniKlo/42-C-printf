@@ -6,12 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/21 01:12:44 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:18:03 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "../include/printf.h"
 
 static void	establish(t_print *all, t_block *blk)
 {
@@ -64,21 +63,9 @@ static void	sort(t_print *all, int *i)
 
 	establish(all, &blk);
 	grab_flag(&blk, all->format, i);//check the whole fmt. 
-//	blk.t = va_arg(*blk->ap, union u_type);//grab the value into union
 	f = dispatch_table(blk.specifier);
-//	printf("T/F: %d\n", f);
 	if (f != NULL)
 		f(&blk);
-//	else how to keep it printing
-//		write(1, "\0", 1);
-/*    printf("#+-0' '\n%i%i%i%i %i\n", blk.alt_form,
-           blk.show_sign,
-           blk.left_align,
-           blk.prepend_zero,
-           blk.prepend_space);*/
-//	blk.specifier = all->format[i];
-//	if (blk.specifier == 'd')
-//		fmt_decimal(all, &blk);
 }
 
 static void spell(t_print *all, int beg, int i)

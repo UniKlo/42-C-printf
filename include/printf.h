@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/21 01:41:58 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 14:08:32 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,43 +17,16 @@
 ** -------------------------- External Headers ---------------------------------
 */
 
-//# include "libft.h"
+# include "../libft/libft.h"
 # include <stdarg.h>
 # include <errno.h>
 # include <stdio.h>
 # include <stdbool.h>
 # include <wchar.h>
-# include <unistd.h>
-# include <stdlib.h>
 
 /*
 ** ----------------------------- Union  Type  ----------------------------------
 */
-/*
-union						u_type
-{
-	int						di;
-	short int				hdi;
-	signed char				hhdi;
-	long int				ldi;
-	long long int			lldi;
-	intmax_t				jdi;
-	unsigned int			uox;
-	unsigned short int		huox;
-	unsigned char			hhuox;
-	unsigned long int		luox;
-	unsigned long long int	lluox;
-	uintmax_t				juox;
-	size_t					zdiuox;
-//	wint_t					lc;
-	unsigned 				charc;
-//	wchar_t					lc;
-	char					*s;
-	wchar_t					*ls;
-//	void					p;
-};
-*/
-// stores va_arg calls
 
 typedef union
 {
@@ -63,8 +36,6 @@ typedef union
 	uintmax_t	un_signed;
 //	void	*ptr;
 }		val;
-
-
 
 /*
 ** ------------------------- Structure Definition ------------------------------
@@ -116,16 +87,13 @@ typedef struct 				s_write
 void		parse(t_print *all);
 void		grab_flag(t_block *blk,char *format, int *i);
 void		fmt_decimal(t_print *all, t_block *blk);
-//void		p_s(t_block *blk, union u_type *t, va_list ap);
 void		p_diuoxX(t_block *blk);
 void        p_c(t_block *blk);
 void        p_s(t_block *blk);
 void        p_ls(t_block *blk);
-//void        p_p(t_block *blk);
 int			bigger(int a, int b);
 void		establish_write(t_write *act);
-//void    ft_putwchar(wchar_t C);
-void	undef(t_block *blk);
+void		undef(t_block *blk);
 int         ft_printf(const char *format, ...);
 
 #endif

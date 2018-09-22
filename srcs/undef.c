@@ -6,11 +6,11 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 00:18:38 by khou              #+#    #+#             */
-/*   Updated: 2018/09/20 00:26:22 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/22 16:18:34 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../include/printf.h"
 
 void	undef(t_block *blk)
 {
