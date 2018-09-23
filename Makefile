@@ -14,7 +14,7 @@ C = clang
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror -fsanitize=address -o2
+FLAGS = -Wall -Wextra -Werror
 
 DIR_INC = Include/
 
@@ -56,7 +56,7 @@ norme:
 	norminette ./$(DIR_S)/
 
 clean:
-	@rm -f *.o
+	@rm -f $(OBJS)
 	@echo "cleaned up objects"
 
 fclean: clean
