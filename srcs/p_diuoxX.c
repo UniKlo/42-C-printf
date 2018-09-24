@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 12:23:34 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/24 14:32:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	write_blk(t_block *blk, t_write *act)
 //		if (act->space - 2 >= 0 && *s && blk->precision != -1)
 		if (act->space - 2 >= 0 && *s)
 			act->space -= 2;
-		if (blk->precision == -1 && act->space > 0 && act->nbr == 0)
+		if (blk->precision == -1 && act->space > 0 && act->nbr == 0 && 
+			(blk->specifier == 'x' || blk->specifier == 'X'))
 			act->space += 2;
 //		printf("act->space2: %d\n", act->space);
 		*s && act->nbr == 0 ? s = "\0" : 0;
@@ -55,6 +56,7 @@ void	write_blk(t_block *blk, t_write *act)
 	blk->prepend_space && act->space-- > 0 ? *blk->ret += 1 : 0;  
 	act->space < 0 ? act->space = 0: 0;
 	*blk->ret += act->zero + act->space;
+//	printf("act->zero: %d\n", act->zero);
 	if (blk->left_align)
 	{
 		(blk->prepend_space) && write(*blk->fd, " ", 1);
@@ -70,7 +72,7 @@ void	write_blk(t_block *blk, t_write *act)
 	{
 		(blk->prepend_space) && write(*blk->fd, " ", 1);
 		blk->prepend_zero && act->sign ? write(1, &act->sign, 1) : 0;
-		//	printf("act->sign: %c\n", act->sign);
+//		printf("act->sign: %c\n", act->sign);
 		blk->prepend_zero ? *blk->ret += ft_putstr(s, ft_strlen(s)) : 0;
 		while (act->space-- >0)
 		{
@@ -82,7 +84,10 @@ void	write_blk(t_block *blk, t_write *act)
 		//printf("T/F: %d\n", !blk->prepend_zero && act->sign);
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
+//		printf("T/F: %d\n", blk->precision);
 		if ((blk->precision < -1 || blk->precision == 0) && act->nbr == 0)
+			return;
+		else if (blk->precision == -1 && blk->specifier == 'o' && act->nbr == 0)
 			return;
 		else
 			*blk->ret += ft_putnbr(act->nbr, blk->specifier);
@@ -114,15 +119,29 @@ void		p_diuoxX(t_block *blk)
 			blk->prepend_space = false;
 			act.sign = '\0';
 		}
-    }
-	(act.nbr == 0) ? act.length++ : 0;
+//		printf("sign: {%c}\n", act.sign);
+	}
+	printf("act.length1: %d\n", act.length);
+	(blk->specifier != 'o'  && act.nbr == 0) ? act.length++ : act.length;
+	act.nbr == 0 ? act.length++ : 0;
+    printf("act.length2: %d\n", act.length);
 	act.space = blk->width - bigger(blk->precision, act.length);// +, -, 0
 	act.space < 0 ? act.space = 0: 0;
+//	printf("act.space:  %d\n", act.space);
 	act.zero = (blk->precision - act.length);
 	act.zero < 0 ? act.zero = 0: 0;// +, -, 0
+//	printf("act.zero: %d\n", act.zero);
 	if ((blk->precision < -1 || blk->precision == 0) && act.nbr == 0)
-		if (act.space++ > 0 || act.sign)
+		if (act.space > 0 || act.sign)
+		{
+			if (blk->specifier != 'o' && blk->specifier != 'O')
+			{
+				act.space++;
+//				printf("T/F: %d\n", blk->specifier != 'o');
+//				printf("act.space2:  %d\n", act.space);
+			}
             write_blk(blk, &act);
+		}
         else
 			return ;
 	else
