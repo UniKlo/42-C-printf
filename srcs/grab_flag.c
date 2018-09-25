@@ -19,7 +19,6 @@ int	width(t_block *blk, char *blk_fmt)
 
 	x = 0;
 	blk->width = ft_atoi(blk_fmt);
-//	printf("blk-width: %d\n", blk->width);
 	while (ft_isdigit(blk_fmt[++x]));
 	return (x - 1);
 }
@@ -31,8 +30,8 @@ int	p_dot(t_block *blk, char *blk_fmt)
 	x = 0;
 	if (ft_isdigit(blk_fmt[x]))
 	{
-		blk->p_dot = ft_atoi(blk_fmt);//read all the nbr
-		while (ft_isdigit(blk_fmt[++x]));//exit on the last digit
+		blk->p_dot = ft_atoi(blk_fmt);
+		while (ft_isdigit(blk_fmt[++x]));
 //		printf("blk->p_dot: %d\n", blk->p_dot);
 	}
 	else // there is '.' but no number

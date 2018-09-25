@@ -53,7 +53,7 @@ static int	ls_len(wchar_t *ls)
 	return (len);
 }
 
-void		p_ls(t_block *blk, t_write *act, char *ls)
+void		p_ls(t_block *blk, t_write *act, wchar_t *ls)
 {
 	if (blk->left_align)
 	{
