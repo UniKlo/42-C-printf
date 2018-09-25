@@ -12,6 +12,26 @@
 
 #include "../include/printf.h"
 
+int length(t_block *blk, char *blk_fmt)
+{
+	int x;
+
+	x = 0;
+	if (blk_fmt[x] == 'h' && blk_fmt[x + 1] == 'h' && (x = x + 2))
+		ft_strcpy(blk->length, "hh\0");
+	else if (*blk->length != 'z' && blk_fmt[x] == 'h' && (x = x + 1))
+		ft_strcpy(blk->length, "h\0");
+	else if (blk_fmt[x] == 'l' && blk_fmt[x + 1] == 'l' && (x = x + 2))
+		ft_strcpy(blk->length, "ll\0");
+	else if (blk_fmt[x] == 'l' && (x = x + 1))
+		ft_strcpy(blk->length, "l\0");
+	else if (blk_fmt[x] == 'z' && (x = x + 1))
+		ft_strcpy(blk->length, "z\0");
+	else if (blk_fmt[x] == 'j' && (x = x + 1))
+		ft_strcpy(blk->length, "j\0");
+	return (x - 1);
+}
+
 void	signed_lengh(t_block *blk, t_write *act)
 {
 	act->sign = '+';

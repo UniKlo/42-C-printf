@@ -12,6 +12,43 @@
 
 #include "../include/printf.h"
 
+static void	sort(t_print *all, int *i)
+{
+	t_block		blk;
+	t_fun_tbl	f;
+
+	establish(all, &blk);
+	grab_flag(&blk, all->format, i);
+	f = dispatch_table(blk.specifier);
+	if (f != NULL)
+		f(&blk);
+}
+
+static void	spell(t_print *all, int beg, int i)
+{
+	write(all->fd, all->format + beg, i - beg);
+	all->ret += i - beg;
+}
+
+void		parse(t_print *all)
+{
+	int		beg;
+	int		i;
+
+	beg = 0;
+	i = -1;
+	while (all->format[++i])
+	{
+		if (all->format[i] == '%')
+		{
+			spell(all, beg, i);
+			sort(all, &i);
+			beg = i + 1;
+		}
+	}
+	spell(all, beg, i);
+}
+
 int		ft_printf(const char *format, ...)
 {
 	t_print		all;

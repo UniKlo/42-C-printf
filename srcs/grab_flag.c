@@ -12,27 +12,8 @@
 
 #include "../include/printf.h"
 
-static int length(t_block *blk, char *blk_fmt)
-{
-	int x;
 
-	x = 0;
-	if (blk_fmt[x] == 'h' && blk_fmt[x + 1] == 'h' && (x = x + 2))
-		ft_strcpy(blk->length, "hh\0");
-	else if (*blk->length != 'z' && blk_fmt[x] == 'h' && (x = x + 1))
-		ft_strcpy(blk->length, "h\0");
-	else if (blk_fmt[x] == 'l' && blk_fmt[x + 1] == 'l' && (x = x + 2))
-		ft_strcpy(blk->length, "ll\0");
-	else if (blk_fmt[x] == 'l' && (x = x + 1))
-		ft_strcpy(blk->length, "l\0");
-	else if (blk_fmt[x] == 'z' && (x = x + 1))
-		ft_strcpy(blk->length, "z\0");
-	else if (blk_fmt[x] == 'j' && (x = x + 1))
-		ft_strcpy(blk->length, "j\0");
-	return (x - 1);
-}
-
-static int	width(t_block *blk, char *blk_fmt)
+int	width(t_block *blk, char *blk_fmt)
 {
 	int x;
 
@@ -43,7 +24,7 @@ static int	width(t_block *blk, char *blk_fmt)
 	return (x - 1);
 }
 
-static int	p_dot(t_block *blk, char *blk_fmt)
+int	p_dot(t_block *blk, char *blk_fmt)
 {
 	int x;
 
@@ -60,7 +41,7 @@ static int	p_dot(t_block *blk, char *blk_fmt)
 	return (x);
 }
 
-static int	is_flag(t_block *blk, char c)
+int	is_flag(t_block *blk, char c)
 {
 	if (!ft_strchr("#+-0 ", c))
 		return (0);
@@ -72,7 +53,7 @@ static int	is_flag(t_block *blk, char c)
 	return (1);
 }
 
-static void	valid_all(t_block *blk)
+void	valid_all(t_block *blk)
 {
 	blk->sign == 1 ? blk->pad_s = false : 0;
 	blk->p_dot > 0 ? blk->pad_z = false : 0;
@@ -103,8 +84,7 @@ static void	valid_all(t_block *blk)
 //	printf("T/F: %d\n", ft_strcmp(blk->length, "\0"));
 }
 
-
-static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
+int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 {
 
 	if ((c == 's' || c == 'S'|| c == 'p' || c == 'd' || c == 'D' || c == 'i' ||
@@ -115,26 +95,4 @@ static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 //	printf("invalid directive from spe: %c\n", c);//not valid char
 //	printf("blk->specifier: %c\n", blk->specifier);
 	return (1);
-}
-
-void	grab_flag(t_block *blk, char *blk_fmt, int *i)
-{
-	while (blk_fmt[++*i] && !ft_strchr("sSpdDioOuUxXcC%Z", blk_fmt[*i]))
-	{
-		//printf("%c\n", blk_fmt[*i]);
-		if (is_flag(blk, blk_fmt[*i]));//better to check it one by one
-		else if (blk_fmt[*i] == '.')//check it in chunk
-			*i += p_dot(blk, blk_fmt + *i + 1);
-		else if (!blk->width && ft_isdigit(blk_fmt[*i]))
-			*i += width(blk, blk_fmt + *i);
-		else if (ft_strchr("hlzj", (blk_fmt[*i])))
-			*i += length(blk, blk_fmt + *i);
-		//		printf("invalid directive from flag: %c\n", blk_fmt[*i]);//not valid char
-	}
-//	printf("out zero: %d\n", blk->pad_z);
-//	printf("T/F: %d\n", !blk_fmt[++*i]);
-	specifier(blk, blk_fmt[*i]);
-	valid_all(blk);
-//	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->pad_z, blk->pad_s);
-//	printf("specifier: %c, lengh: %s\n", blk->specifier, blk->length);
 }

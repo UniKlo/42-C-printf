@@ -12,7 +12,7 @@
 
 #include "../include/printf.h"
 
-static void	establish(t_print *all, t_block *blk)
+void	establish(t_print *all, t_block *blk)
 {
 	blk->hash = false;
 	blk->left_align = false;
@@ -30,6 +30,29 @@ static void	establish(t_print *all, t_block *blk)
 	blk->fd = &all->fd;
 	blk->ret = &all->ret;
 }
+
+void	grab_flag(t_block *blk, char *blk_fmt, int *i)
+{
+	while (blk_fmt[++*i] && !ft_strchr("sSpdDioOuUxXcC%Z", blk_fmt[*i]))
+	{
+		//printf("%c\n", blk_fmt[*i]);
+		if (is_flag(blk, blk_fmt[*i]));//better to check it one by one
+		else if (blk_fmt[*i] == '.')//check it in chunk
+			*i += p_dot(blk, blk_fmt + *i + 1);
+		else if (!blk->width && ft_isdigit(blk_fmt[*i]))
+			*i += width(blk, blk_fmt + *i);
+		else if (ft_strchr("hlzj", (blk_fmt[*i])))
+			*i += length(blk, blk_fmt + *i);
+		//		printf("invalid directive from flag: %c\n", blk_fmt[*i]);//not valid char
+	}
+//	printf("out zero: %d\n", blk->pad_z);
+//	printf("T/F: %d\n", !blk_fmt[++*i]);
+	specifier(blk, blk_fmt[*i]);
+	valid_all(blk);
+//	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->pad_z, blk->pad_s);
+//	printf("specifier: %c, lengh: %s\n", blk->specifier, blk->length);
+}
+
 
 t_fun_tbl	dispatch_table(char c)
 {
@@ -52,41 +75,4 @@ t_fun_tbl	dispatch_table(char c)
 	f['%'] = &p_c;
 	f['Z'] = &undef;
 	return (f[(int)c]);
-}
-
-static void	sort(t_print *all, int *i)
-{
-	t_block		blk;
-	t_fun_tbl	f;
-
-	establish(all, &blk);
-	grab_flag(&blk, all->format, i);
-	f = dispatch_table(blk.specifier);
-	if (f != NULL)
-		f(&blk);
-}
-
-static void	spell(t_print *all, int beg, int i)
-{
-	write(all->fd, all->format + beg, i - beg);
-	all->ret += i - beg;
-}
-
-void		parse(t_print *all)
-{
-	int		beg;
-	int		i;
-
-	beg = 0;
-	i = -1;
-	while (all->format[++i])
-	{
-		if (all->format[i] == '%')
-		{
-			spell(all, beg, i);
-			sort(all, &i);
-			beg = i + 1;
-		}
-	}
-	spell(all, beg, i);
 }

@@ -73,8 +73,14 @@ typedef struct	s_write
 ** -----------------------------------------------------------------------------
 */
 void			parse(t_print *all);
+void			establish(t_print *all, t_block *blk);
 void			grab_flag(t_block *blk, char *format, int *i);
-void			fmt_decimal(t_print *all, t_block *blk);
+int				width(t_block *blk, char *blk_fmt);
+int				p_dot(t_block *blk, char *blk_fmt);
+int				is_flag(t_block *blk, char c);
+void			valid_all(t_block *blk);
+int				specifier(t_block *blk, char c);
+t_fun_tbl		dispatch_table(char c);
 void			p_diuox(t_block *blk);
 void			p_c(t_block *blk);
 void			set_s(t_block *blk);
@@ -83,6 +89,7 @@ int				bigger(int a, int b);
 void			establish_write(t_write *act);
 void			undef(t_block *blk);
 int				ft_printf(const char *format, ...);
+int				length(t_block *blk, char *blk_fmt);
 void			signed_lengh(t_block *blk, t_write *act);
 void			unsigned_lengh(t_block *blk, t_write *act);
 
