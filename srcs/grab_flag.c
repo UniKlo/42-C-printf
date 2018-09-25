@@ -43,19 +43,19 @@ static int	width(t_block *blk, char *blk_fmt)
 	return (x - 1);
 }
 
-static int	precision(t_block *blk, char *blk_fmt)
+static int	p_dot(t_block *blk, char *blk_fmt)
 {
 	int x;
 
 	x = 0;
 	if (ft_isdigit(blk_fmt[x]))
 	{
-		blk->precision = ft_atoi(blk_fmt);//read all the nbr
+		blk->p_dot = ft_atoi(blk_fmt);//read all the nbr
 		while (ft_isdigit(blk_fmt[++x]));//exit on the last digit
-//		printf("blk->precision: %d\n", blk->precision);
+//		printf("blk->p_dot: %d\n", blk->p_dot);
 	}
 	else // there is '.' but no number
-		blk->precision = -5;
+		blk->p_dot = -5;
 	
 	return (x);
 }
@@ -67,23 +67,23 @@ static int	is_flag(t_block *blk, char c)
 	blk->hash == 1 || c == '#' ? blk->hash = true : false;
 	blk->sign == 1 || c == '+' ? blk->sign = true : false;
 	blk->left_align == 1 || c == '-' ? blk->left_align = true : false;
-	blk->prepend_zero == 1 || c == '0' ? blk->prepend_zero = true : false;
-//	c == '0' ? blk->prepend_zero = true : false;
-//	printf("pre zero: %d\n", blk->prepend_zero);
-	blk->prepend_space == 1 || c == ' ' ? blk->prepend_space = true : false;
+	blk->pad_z == 1 || c == '0' ? blk->pad_z = true : false;
+//	c == '0' ? blk->pad_z = true : false;
+//	printf("pre zero: %d\n", blk->pad_z);
+	blk->pad_s == 1 || c == ' ' ? blk->pad_s = true : false;
 	return (1);
 }
 
 static void	valid_all(t_block *blk)
 {
-	blk->sign == 1 ? blk->prepend_space = false : 0;
-	blk->precision > 0 ? blk->prepend_zero = false : 0;
-	blk->left_align == 1 ? blk->prepend_zero = false : 0;
-	blk->specifier == 'u' ? blk->prepend_space = false : 0;
+	blk->sign == 1 ? blk->pad_s = false : 0;
+	blk->p_dot > 0 ? blk->pad_z = false : 0;
+	blk->left_align == 1 ? blk->pad_z = false : 0;
+	blk->specifier == 'u' ? blk->pad_s = false : 0;
 	blk->specifier == 'u' ? blk->sign = false : 0;
 //	blk->specifier == 'Z' ? blk->specifier == 'u' : 0;
-//	printf("valid precision: %d\n", blk->precision);
-//	printf("valid zero: %d\n", blk->prepend_zero);
+//	printf("valid p_dot: %d\n", blk->p_dot);
+//	printf("valid zero: %d\n", blk->pad_z);
     if (blk->specifier == 'U')
 	{
 		!ft_strcmp(blk->length, "\0") ? ft_strcpy(blk->length, "l\0") : 0;
@@ -131,7 +131,7 @@ void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 		//printf("%c\n", blk_fmt[*i]);
 		if (is_flag(blk, blk_fmt[*i]));//better to check it one by one
 		else if (blk_fmt[*i] == '.')//check it in chunk
-			*i += precision(blk, blk_fmt + *i + 1);
+			*i += p_dot(blk, blk_fmt + *i + 1);
 		else if (!blk->width && ft_isdigit(blk_fmt[*i]))
 			*i += width(blk, blk_fmt + *i);
 		else if (ft_strchr("hlzj", (blk_fmt[*i])))
@@ -140,12 +140,12 @@ void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 //		else
 		//		printf("invalid directive from flag: %c\n", blk_fmt[*i]);//not valid char
 	}
-//	printf("out zero: %d\n", blk->prepend_zero);
+//	printf("out zero: %d\n", blk->pad_z);
 //	valid_flag(blk);
 //	!blk_fmt[++*i] ? return : 0 ;
 //	printf("T/F: %d\n", !blk_fmt[++*i]);
 	specifier(blk, blk_fmt[*i]);
 	valid_all(blk);
-//	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->prepend_zero, blk->prepend_space);
+//	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->pad_z, blk->pad_s);
 //	printf("specifier: %c, lengh: %s\n", blk->specifier, blk->length);
 }

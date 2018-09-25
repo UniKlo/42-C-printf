@@ -16,11 +16,11 @@ static void	establish(t_print *all, t_block *blk)
 {
 	blk->hash = false;
 	blk->left_align = false;
-	blk->prepend_space = false;
-	blk->prepend_zero = false;
+	blk->pad_s = false;
+	blk->pad_z = false;
 	blk->sign = false;
 	blk->width = 0;
-	blk->precision = -1;
+	blk->p_dot = -1;
 	blk->length[0] = '\0';
 	blk->length[1] = '\0';
 	blk->length[2] = '\0';

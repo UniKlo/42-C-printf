@@ -40,11 +40,11 @@ typedef struct	s_block
 {
 	bool		hash;
 	bool		left_align;
-	bool		prepend_space;
-	bool		prepend_zero;
+	bool		pad_s;
+	bool		pad_z;
 	bool		sign;
 	int			width;
-	int			precision;
+	int			p_dot;
 	char		length[3];
 	char		specifier;
 	int			len;

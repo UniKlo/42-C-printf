@@ -62,16 +62,16 @@ void		p_ls(t_block *blk)
 	ls = va_arg(*blk->ap, wchar_t *);
 	if (!ls)
 		ls = L"(null)";
-	blk->precision == -1 ? act.length = ls_len(ls) : blk->precision;
-	if (blk->precision > 0)
+	blk->p_dot == -1 ? act.length = ls_len(ls) : blk->p_dot;
+	if (blk->p_dot > 0)
 	{
-		if ((blk->precision > ls_len(ls)) && ls_len(ls) > 0)
+		if ((blk->p_dot > ls_len(ls)) && ls_len(ls) > 0)
 			act.length = ls_len(ls);
 		else
-			act.length = blk->precision;
+			act.length = blk->p_dot;
 	}
 	if (blk->width && ls_len(ls) > 0)
-		act.space = blk->width - bigger(blk->precision, act.length);
+		act.space = blk->width - bigger(blk->p_dot, act.length);
 	else
 		act.space = blk->width;
 	*blk->ret = *blk->ret + act.space;
@@ -79,13 +79,13 @@ void		p_ls(t_block *blk)
 	{
 		*blk->ret += ft_putwstr(ls, act.length);
 		while (act.space-- > 0)
-			blk->prepend_zero ?\
+			blk->pad_z ?\
 				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
 	}
 	else
 	{
 		while (act.space-- > 0)
-			blk->prepend_zero ?\
+			blk->pad_z ?\
 				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
 		*blk->ret += ft_putwstr(ls, act.length);
 	}
@@ -100,16 +100,16 @@ void		p_s(t_block *blk)
 	s = va_arg(*blk->ap, char *);
 	if (!s)
 		s = "(null)";
-	blk->precision == -1 ? act.length = ft_strlen(s) : blk->precision;
-	if (blk->precision > 0)
+	blk->p_dot == -1 ? act.length = ft_strlen(s) : blk->p_dot;
+	if (blk->p_dot > 0)
 	{
-		if ((blk->precision > (int)ft_strlen(s)) && ft_strlen(s) > 0)
+		if ((blk->p_dot > (int)ft_strlen(s)) && ft_strlen(s) > 0)
 			act.length = ft_strlen(s);
 		else
-			act.length = blk->precision;
+			act.length = blk->p_dot;
 	}
 	if (blk->width && ft_strlen(s) > 0)
-		act.space = blk->width - bigger(blk->precision, act.length);
+		act.space = blk->width - bigger(blk->p_dot, act.length);
 	else
 		act.space = blk->width;
 	*blk->ret = *blk->ret + act.space;
@@ -117,13 +117,13 @@ void		p_s(t_block *blk)
 	{
 		*blk->ret += ft_putstr(s, act.length);
 		while (act.space-- > 0)
-			blk->prepend_zero ?\
+			blk->pad_z ?\
 				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
 	}
 	else
 	{
 		while (act.space-- > 0)
-			blk->prepend_zero ?\
+			blk->pad_z ?\
 				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
 		*blk->ret += ft_putstr(s, act.length);
 	}
