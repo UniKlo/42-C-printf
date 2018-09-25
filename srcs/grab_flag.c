@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 16:10:13 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/24 18:56:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ static int	is_flag(t_block *blk, char c)
 	blk->sign == 1 || c == '+' ? blk->sign = true : false;
 	blk->left_align == 1 || c == '-' ? blk->left_align = true : false;
 	blk->pad_z == 1 || c == '0' ? blk->pad_z = true : false;
-//	c == '0' ? blk->pad_z = true : false;
-//	printf("pre zero: %d\n", blk->pad_z);
 	blk->pad_s == 1 || c == ' ' ? blk->pad_s = true : false;
 	return (1);
 }
@@ -81,9 +79,6 @@ static void	valid_all(t_block *blk)
 	blk->left_align == 1 ? blk->pad_z = false : 0;
 	blk->specifier == 'u' ? blk->pad_s = false : 0;
 	blk->specifier == 'u' ? blk->sign = false : 0;
-//	blk->specifier == 'Z' ? blk->specifier == 'u' : 0;
-//	printf("valid p_dot: %d\n", blk->p_dot);
-//	printf("valid zero: %d\n", blk->pad_z);
     if (blk->specifier == 'U')
 	{
 		!ft_strcmp(blk->length, "\0") ? ft_strcpy(blk->length, "l\0") : 0;
@@ -105,7 +100,6 @@ static void	valid_all(t_block *blk)
 	 blk->specifier = 'S' : 0;
 	(blk->specifier == 'c' && !ft_strcmp(blk->length, "l\0")) ?
 		blk->specifier = 'C' : 0;
-//	(blk->length && !blk->specifier) ? 
 //	printf("T/F: %d\n", ft_strcmp(blk->length, "\0"));
 }
 
@@ -113,11 +107,10 @@ static void	valid_all(t_block *blk)
 static int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
 {
 
-	if ((c == 's' || c == 'S'|| c == 'p' || c == 'd' || c == 'D' || c == 'i' 
-		 || c == 'o' || c == 'O' || c == 'u' || c == 'U'|| c == 'x' || c == 'X'
-		 || c == 'c' || c == 'C' || c == '%' || c == 'Z'
-		 //|| c == 'n' || c == 'e' || c == 'g' || c == 'G'
-		 ) && (blk->specifier = c))
+	if ((c == 's' || c == 'S'|| c == 'p' || c == 'd' || c == 'D' || c == 'i' ||
+		 c == 'o' || c == 'O' || c == 'u' || c == 'U'|| c == 'x' || c == 'X' ||
+		 c == 'c' || c == 'C' || c == '%' || c == 'Z') &&
+		(blk->specifier = c))
 		return (1);
 //	printf("invalid directive from spe: %c\n", c);//not valid char
 //	printf("blk->specifier: %c\n", blk->specifier);
@@ -136,13 +129,9 @@ void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 			*i += width(blk, blk_fmt + *i);
 		else if (ft_strchr("hlzj", (blk_fmt[*i])))
 			*i += length(blk, blk_fmt + *i);
-		//Color
-//		else
 		//		printf("invalid directive from flag: %c\n", blk_fmt[*i]);//not valid char
 	}
 //	printf("out zero: %d\n", blk->pad_z);
-//	valid_flag(blk);
-//	!blk_fmt[++*i] ? return : 0 ;
 //	printf("T/F: %d\n", !blk_fmt[++*i]);
 	specifier(blk, blk_fmt[*i]);
 	valid_all(blk);

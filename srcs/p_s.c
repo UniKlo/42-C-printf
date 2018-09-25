@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_s.c                                              :+:      :+:    :+:   */
+/*   set_s.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 15:25:31 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/24 19:15:56 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,25 @@ static int	ls_len(wchar_t *ls)
 	return (len);
 }
 
-void		p_ls(t_block *blk)
+void		p_ls(t_block *blk, t_write *act, char *ls)
+{
+	if (blk->left_align)
+	{
+		*blk->ret += ft_putwstr(ls, act->length);
+		while (act->space-- > 0)
+			blk->pad_z ?\
+				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
+	}
+	else
+	{
+		while (act->space-- > 0)
+			blk->pad_z ?\
+				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
+		*blk->ret += ft_putwstr(ls, act->length);
+	}
+}
+
+void		set_ls(t_block *blk)
 {
 	wchar_t		*ls;
 	t_write		act;
@@ -75,23 +93,26 @@ void		p_ls(t_block *blk)
 	else
 		act.space = blk->width;
 	*blk->ret = *blk->ret + act.space;
+	p_ls(blk, &act, ls); 
+}
+
+void		p_s(t_block *blk, t_write *act, char *s)
+{
 	if (blk->left_align)
-	{
-		*blk->ret += ft_putwstr(ls, act.length);
-		while (act.space-- > 0)
-			blk->pad_z ?\
-				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
-	}
-	else
-	{
-		while (act.space-- > 0)
-			blk->pad_z ?\
-				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
-		*blk->ret += ft_putwstr(ls, act.length);
+    {
+        *blk->ret += ft_putstr(s, act->length);
+        while (act->space-- > 0)
+            blk->pad_z ? ft_putchar('0') : ft_putchar(' ');
+    }
+    else
+    {
+        while (act->space-- > 0)
+            blk->pad_z ? ft_putchar('0') : ft_putchar(' ');
+        *blk->ret += ft_putstr(s, act->length);
 	}
 }
 
-void		p_s(t_block *blk)
+void		set_s(t_block *blk)
 {
 	char		*s;
 	t_write		act;
@@ -113,18 +134,5 @@ void		p_s(t_block *blk)
 	else
 		act.space = blk->width;
 	*blk->ret = *blk->ret + act.space;
-	if (blk->left_align)
-	{
-		*blk->ret += ft_putstr(s, act.length);
-		while (act.space-- > 0)
-			blk->pad_z ?\
-				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
-	}
-	else
-	{
-		while (act.space-- > 0)
-			blk->pad_z ?\
-				write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
-		*blk->ret += ft_putstr(s, act.length);
-	}
+	p_s(blk, &act, s); 
 }

@@ -35,8 +35,8 @@ t_fun_tbl	dispatch_table(char c)
 {
 	t_fun_tbl	f[123];
 
-	f['s'] = &p_s;
-	f['S'] = &p_ls;
+	f['s'] = &set_s;
+	f['S'] = &set_ls;
 	f['p'] = &p_diuox;
 	f['d'] = &p_diuox;
 	f['D'] = &p_diuox;
