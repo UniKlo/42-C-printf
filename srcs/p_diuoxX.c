@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_diuoxX.c                                         :+:      :+:    :+:   */
+/*   p_diuox.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 14:44:07 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/24 17:49:04 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	write_blk(t_block *blk, t_write *act)
 	if (blk->left_align)
 	{
 		(blk->prepend_space) && write(*blk->fd, " ", 1);
-		act->sign || blk->data.s_signed < 0 ? write(1, &act->sign, 1) : 0;
+		act->sign || blk->s_data < 0 ? write(1, &act->sign, 1) : 0;
 		*blk->ret += ft_putstr(s, ft_strlen(s));
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
@@ -94,7 +94,7 @@ void	write_blk(t_block *blk, t_write *act)
 	}
 }
 
-void		p_diuoxX(t_block *blk)
+void		p_diuox(t_block *blk)
 {
 	uintmax_t	tmp;
 	t_write act;
