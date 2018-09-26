@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 17:49:04 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/25 17:30:17 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void		p_diuox(t_block *blk)
 	}
 //	printf("act.length1: %d\n", act.length);
 	(blk->specifier != 'o'  && act.nbr == 0) ? act.length++ : act.length;
-	act.nbr == 0 ? act.length++ : 0;
+//	act.nbr == 0 ? act.length++ : 0;
 //    printf("act.length2: %d\n", act.length);
 	act.space = blk->width - bigger(blk->p_dot, act.length);// +, -, 0
 	act.space < 0 ? act.space = 0: 0;
