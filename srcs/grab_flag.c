@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/26 21:23:22 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 21:31:10 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	is_flag(t_block *blk, char c)
 
 void	valid_all(t_block *blk)
 {
+//	char *s;
 	blk->sign == 1 ? blk->pad_s = false : 0;
 	blk->p_dot > 0 ? blk->pad_z = false : 0;
 	blk->left_align == 1 ? blk->pad_z = false : 0;
@@ -76,9 +77,9 @@ void	valid_all(t_block *blk)
 		blk->hash = true;
 		blk->specifier = 'x';
 		ft_strcpy(blk->length, "ll\0");
-		blk->un_data = va_arg(*blk->ap, char *);
-		if (!blk->un_data)
-			set_s(blk);	
+//		s = va_arg(*blk->ap, char *);
+//		if (!s)
+//			set_s(blk);	
 	}
 	(blk->specifier == 's' && !ft_strcmp(blk->length, "l\0")) ? 
 	 blk->specifier = 'S' : 0;
