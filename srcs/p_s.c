@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_s.c                                              :+:      :+:    :+:   */
+/*   p_s.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 17:11:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 19:15:56 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 11:22:20 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/printf.h"
 
-static int	ft_putwstr(wchar_t *ls, int len)
+int		ft_putwstr(wchar_t *ls, int len)
 {
 	int		i;
 
@@ -33,27 +33,7 @@ static int	ft_putwstr(wchar_t *ls, int len)
 	return (i);
 }
 
-static int	ls_len(wchar_t *ls)
-{
-	int	len;
-
-	len = 0;
-	while (*ls != L'\0')
-	{
-		if (*ls <= 0x007F)
-			len += 1;
-		else if (*ls <= 0x07FF)
-			len += 2;
-		else if (*ls <= 0xFFFF)
-			len += 3;
-		else if (*ls <= 0x10FFFF)
-			len += 4;
-		ls++;
-	}
-	return (len);
-}
-
-void		p_ls(t_block *blk, t_write *act, wchar_t *ls)
+void	p_ls(t_block *blk, t_write *act, wchar_t *ls)
 {
 	if (blk->left_align)
 	{
@@ -71,7 +51,7 @@ void		p_ls(t_block *blk, t_write *act, wchar_t *ls)
 	}
 }
 
-void		set_ls(t_block *blk)
+void	set_ls(t_block *blk)
 {
 	wchar_t		*ls;
 	t_write		act;
@@ -80,39 +60,39 @@ void		set_ls(t_block *blk)
 	ls = va_arg(*blk->ap, wchar_t *);
 	if (!ls)
 		ls = L"(null)";
-	blk->p_dot == -1 ? act.length = ls_len(ls) : blk->p_dot;
+	blk->p_dot == -1 ? act.length = ft_lstrlen(ls) : blk->p_dot;
 	if (blk->p_dot > 0)
 	{
-		if ((blk->p_dot > ls_len(ls)) && ls_len(ls) > 0)
-			act.length = ls_len(ls);
+		if ((blk->p_dot > ft_lstrlen(ls)) && ft_lstrlen(ls) > 0)
+			act.length = ft_lstrlen(ls);
 		else
 			act.length = blk->p_dot;
 	}
-	if (blk->width && ls_len(ls) > 0)
+	if (blk->width && ft_lstrlen(ls) > 0)
 		act.space = blk->width - bigger(blk->p_dot, act.length);
 	else
 		act.space = blk->width;
 	*blk->ret = *blk->ret + act.space;
-	p_ls(blk, &act, ls); 
+	p_ls(blk, &act, ls);
 }
 
-void		p_s(t_block *blk, t_write *act, char *s)
+void	p_s(t_block *blk, t_write *act, char *s)
 {
 	if (blk->left_align)
-    {
-        *blk->ret += ft_putstr(s, act->length);
-        while (act->space-- > 0)
-            blk->pad_z ? ft_putchar('0') : ft_putchar(' ');
-    }
-    else
-    {
-        while (act->space-- > 0)
-            blk->pad_z ? ft_putchar('0') : ft_putchar(' ');
-        *blk->ret += ft_putstr(s, act->length);
+	{
+		*blk->ret += ft_putstr(s, act->length);
+		while (act->space-- > 0)
+			blk->pad_z ? ft_putchar('0') : ft_putchar(' ');
+	}
+	else
+	{
+		while (act->space-- > 0)
+			blk->pad_z ? ft_putchar('0') : ft_putchar(' ');
+		*blk->ret += ft_putstr(s, act->length);
 	}
 }
 
-void		set_s(t_block *blk)
+void	set_s(t_block *blk)
 {
 	char		*s;
 	t_write		act;
@@ -134,5 +114,5 @@ void		set_s(t_block *blk)
 	else
 		act.space = blk->width;
 	*blk->ret = *blk->ret + act.space;
-	p_s(blk, &act, s); 
+	p_s(blk, &act, s);
 }

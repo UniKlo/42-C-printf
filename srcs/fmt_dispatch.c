@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   fmt_dispatch.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/26 23:30:56 by khou             ###   ########.fr       */
+/*   Created: 2018/09/27 10:22:26 by khou              #+#    #+#             */
+/*   Updated: 2018/09/27 10:28:31 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/printf.h"
 
-void	establish(t_print *all, t_block *blk)
+void		establish(t_print *all, t_block *blk)
 {
 	blk->hash = false;
 	blk->left_align = false;
@@ -32,28 +32,22 @@ void	establish(t_print *all, t_block *blk)
 	blk->p_mark = true;
 }
 
-void	grab_flag(t_block *blk, char *blk_fmt, int *i)
+void		grab_flag(t_block *blk, char *blk_fmt, int *i)
 {
 	while (blk_fmt[++*i] && !ft_strchr("sSpdDioOuUxXcC%Zbn*", blk_fmt[*i]))
 	{
-		//printf("%c\n", blk_fmt[*i]);
-		if (is_flag(blk, blk_fmt[*i]));//better to check it one by one
-		else if (blk_fmt[*i] == '.')//check it in chunk
+		if (is_flag(blk, blk_fmt[*i]))
+			;
+		else if (blk_fmt[*i] == '.')
 			*i += p_dot(blk, blk_fmt + *i + 1);
 		else if (!blk->width && ft_isdigit(blk_fmt[*i]))
 			*i += width(blk, blk_fmt + *i);
 		else if (ft_strchr("hlzj", (blk_fmt[*i])))
 			*i += length(blk, blk_fmt + *i);
-		//		printf("invalid directive from flag: %c\n", blk_fmt[*i]);//not valid char
 	}
-//	printf("out zero: %d\n", blk->pad_z);
-//	printf("T/F: %d\n", !blk_fmt[++*i]);
 	specifier(blk, blk_fmt[*i]);
 	valid_all(blk);
-//	printf("\n#+-0 :\n%d%d%d%d%d\n", blk->alt_form, blk->sign, blk->left_align, blk->pad_z, blk->pad_s);
-//	printf("specifier: %c, lengh: %s\n", blk->specifier, blk->length);
 }
-
 
 t_fun_tbl	dispatch_table(char c)
 {
@@ -77,6 +71,6 @@ t_fun_tbl	dispatch_table(char c)
 	f['%'] = &p_c;
 	f['Z'] = &undef;
 	f['*'] = &p_c;
-	f['n'] = &p_c;
+	f['n'] = &set_s;
 	return (f[(int)c]);
 }

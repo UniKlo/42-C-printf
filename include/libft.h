@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 21:41:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/17 19:43:17 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 11:53:06 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void					*ft_memset(void *s, int c, size_t n);
 
 void					ft_putchar(char c);
 void					ft_putchar_fd(char c, int fd);
-/* void					ft_putendl(char const *s); */
-/* void					ft_putendl_fd(char const *s, int fd); */
-int					ft_putnbr(uintmax_t nb, char base);
-int					ft_putnbr_fd(uintmax_t nb, char base, int fd);
-int					ft_putstr(char const *s, int len);
-int					ft_putstr_fd(char const *s, int fd, int len);
+void					ft_putendl(char const *s);
+void					ft_putendl_fd(char const *s, int fd);
+int						ft_putnbr(uintmax_t nb, char base);
+int						ft_putnbr_fd(uintmax_t nb, char base, int fd);
+int						ft_putstr(char const *s, int len);
+int						ft_putstr_fd(char const *s, int fd, int len);
 
 /*
 ** Conversions
@@ -96,6 +96,7 @@ void					ft_striteri(char *s, void (*f)(unsigned int, char *));
 char					*ft_strjoin(char const *s1, char const *s2);
 size_t					ft_strlcat(char *dst, const char *src, size_t size);
 size_t					ft_strlen(const char *s);
+int						ft_lstrlen(wchar_t *ls);
 char					*ft_strmap(char const *s, char (*f)(char));
 char					*ft_strmapi(char const *s, char (*f)
 									(unsigned int, char));

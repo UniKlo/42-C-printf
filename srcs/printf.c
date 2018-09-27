@@ -6,13 +6,13 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 20:20:45 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 15:29:17 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 10:17:19 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/printf.h"
 
-static void	sort(t_print *all, int *i)
+void	sort(t_print *all, int *i)
 {
 	t_block		blk;
 	t_fun_tbl	f;
@@ -24,13 +24,13 @@ static void	sort(t_print *all, int *i)
 		f(&blk);
 }
 
-static void	spell(t_print *all, int beg, int i)
+void	spell(t_print *all, int beg, int i)
 {
 	write(all->fd, all->format + beg, i - beg);
 	all->ret += i - beg;
 }
 
-void		parse(t_print *all)
+void	parse(t_print *all)
 {
 	int		beg;
 	int		i;

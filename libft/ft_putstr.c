@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:07:22 by khou              #+#    #+#             */
-/*   Updated: 2018/09/22 16:35:13 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 11:05:27 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int		ft_putstr(const char *s, int len)
 {
-	return(ft_putstr_fd(s, 1, len));
+	return (ft_putstr_fd(s, 1, len));
 }

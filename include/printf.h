@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/26 21:51:41 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 11:02:48 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct	s_write
 ** -------------------------------- Sources ------------------------------------
 ** -----------------------------------------------------------------------------
 */
-void			parse(t_print *all);
 void			establish(t_print *all, t_block *blk);
 void			grab_flag(t_block *blk, char *format, int *i);
 int				width(t_block *blk, char *blk_fmt);

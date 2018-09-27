@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grab_flag.c                                        :+:      :+:    :+:   */
+/*   grab_fmt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/26 23:30:21 by khou             ###   ########.fr       */
+/*   Created: 2018/09/27 10:35:42 by khou              #+#    #+#             */
+/*   Updated: 2018/09/27 10:53:49 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/printf.h"
 
-
-int	width(t_block *blk, char *blk_fmt)
+int		width(t_block *blk, char *blk_fmt)
 {
 	int x;
 
 	x = 0;
 	blk->width = ft_atoi(blk_fmt);
-	while (ft_isdigit(blk_fmt[++x]));
+	while (ft_isdigit(blk_fmt[++x]))
+		;
 	return (x - 1);
 }
 
-int	p_dot(t_block *blk, char *blk_fmt)
+int		p_dot(t_block *blk, char *blk_fmt)
 {
 	int x;
 
@@ -31,16 +31,15 @@ int	p_dot(t_block *blk, char *blk_fmt)
 	if (ft_isdigit(blk_fmt[x]))
 	{
 		blk->p_dot = ft_atoi(blk_fmt);
-		while (ft_isdigit(blk_fmt[++x]));
-//		printf("blk->p_dot: %d\n", blk->p_dot);
+		while (ft_isdigit(blk_fmt[++x]))
+			;
 	}
-	else // there is '.' but no number
+	else
 		blk->p_dot = -5;
-	
 	return (x);
 }
 
-int	is_flag(t_block *blk, char c)
+int		is_flag(t_block *blk, char c)
 {
 	if (!ft_strchr("#+-0 ", c))
 		return (0);
@@ -59,42 +58,38 @@ void	valid_all(t_block *blk)
 	blk->left_align == 1 ? blk->pad_z = false : 0;
 	blk->specifier == 'u' ? blk->pad_s = false : 0;
 	blk->specifier == 'u' ? blk->sign = false : 0;
-    if (blk->specifier == 'U')
+	if (blk->specifier == 'U')
 	{
 		!ft_strcmp(blk->length, "\0") ? ft_strcpy(blk->length, "l\0") : 0;
 		!ft_strcmp(blk->length, "h\0") ? ft_strcpy(blk->length, "l\0") : 0;
 		blk->specifier = 'u';
 	}
-    if (blk->specifier == 'D')
-    {
-        !ft_strcmp(blk->length, "\0") ? ft_strcpy(blk->length, "l\0") : 0;
-        !ft_strcmp(blk->length, "h\0") ? ft_strcpy(blk->length, "l\0") : 0;
-        blk->specifier = 'd';
-    }
+	if (blk->specifier == 'D')
+	{
+		!ft_strcmp(blk->length, "\0") ? ft_strcpy(blk->length, "l\0") : 0;
+		!ft_strcmp(blk->length, "h\0") ? ft_strcpy(blk->length, "l\0") : 0;
+		blk->specifier = 'd';
+	}
 	if (blk->specifier == 'p')
-    {
+	{
 		blk->hash = true;
 		blk->specifier = 'x';
 		ft_strcpy(blk->length, "ll\0");
-		blk->p_mark = false;	
+		blk->p_mark = false;
 	}
-	(blk->specifier == 's' && !ft_strcmp(blk->length, "l\0")) ? 
-	 blk->specifier = 'S' : 0;
+	(blk->specifier == 's' && !ft_strcmp(blk->length, "l\0")) ?
+		blk->specifier = 'S' : 0;
 	(blk->specifier == 'c' && !ft_strcmp(blk->length, "l\0")) ?
 		blk->specifier = 'C' : 0;
-//	printf("T/F: %d\n", ft_strcmp(blk->length, "\0"));
 }
 
-int	specifier(t_block *blk, char c)//work, 1: why static 2.can combine?
+int		specifier(t_block *blk, char c)
 {
-
 	if ((c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D' || c == 'i' ||
-		 c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X' ||
-		 c == 'c' || c == 'C' || c == '%' || c == 'Z' || c == 'b' || c == '*' ||
-		 c == 'n') &&
+		c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X' ||
+		c == 'c' || c == 'C' || c == '%' || c == 'Z' || c == 'b' || c == '*' ||
+		c == 'n') &&
 		(blk->specifier = c))
 		return (1);
-//	printf("invalid directive from spe: %c\n", c);//not valid char
-//	printf("blk->specifier: %c\n", blk->specifier);
 	return (1);
 }
