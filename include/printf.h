@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:49 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 17:48:34 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 21:51:41 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_block
 	int			*fd;
 	intmax_t	s_data;
 	uintmax_t	un_data;
-
+	bool		p_mark;
 }				t_block;
 
 typedef void	(*t_fun_tbl)(t_block *blk);
