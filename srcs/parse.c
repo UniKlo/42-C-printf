@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/26 22:21:27 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 22:41:53 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	establish(t_print *all, t_block *blk)
 
 void	grab_flag(t_block *blk, char *blk_fmt, int *i)
 {
-	while (blk_fmt[++*i] && !ft_strchr("sSpdDioOuUxXcC%Z", blk_fmt[*i]))
+	while (blk_fmt[++*i] && !ft_strchr("sSpdDioOuUxXcC%Zb", blk_fmt[*i]))
 	{
 		//printf("%c\n", blk_fmt[*i]);
 		if (is_flag(blk, blk_fmt[*i]));//better to check it one by one
@@ -71,6 +71,7 @@ t_fun_tbl	dispatch_table(char c)
 	f['U'] = &p_diuox;
 	f['x'] = &p_diuox;
 	f['X'] = &p_diuox;
+	f['b'] = &p_diuox;
 	f['c'] = &p_c;
 	f['C'] = &p_c;
 	f['%'] = &p_c;

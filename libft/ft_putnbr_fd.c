@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 14:33:05 by khou              #+#    #+#             */
-/*   Updated: 2018/09/22 16:35:22 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 22:43:14 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		ft_putnbr_fd(uintmax_t n, char b, int fd)
 
 	base = 10;
 	count = 0;
+	b == 'b' ? base = 2 : 10;
 	b == 'o' ? base = 8 : 10;
 	b == 'x' || b == 'X' ? base = 16 : 10;
 	n / base != 0 ? ft_putnbr_fd(n / base, b, fd) : 0;
