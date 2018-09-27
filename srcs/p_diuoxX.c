@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/27 12:00:20 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 12:42:33 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,19 @@ void	set_blk(t_block *blk, t_write *act)
 	write_blk(s, blk, act);
 }
 
+int	ft_nbrlen(uintmax_t nbr)
+{
+	int	len;
+
+	len = 0;
+	while (nbr)
+	{
+		nbr /= 10;
+		len++;
+	}
+	return (len);
+}
+
 void	p_diuox(t_block *blk)
 {
 	uintmax_t	tmp;
@@ -98,11 +111,7 @@ void	p_diuox(t_block *blk)
 	!ft_strchr("uUxXo", blk->specifier) ? signed_lengh(blk, &act) :
 		unsigned_lengh(blk, &act);
 	tmp = act.nbr;
-	while (tmp)
-	{
-		tmp /= 10;
-		act.length++;
-	}
+	act.length = nbrlen(tmp);
 	if (blk->hash)
 		blk->specifier == 'o' || blk->specifier == 'O' ? act.sign = '0' : 0;
 	act.nbr == 0 ? act.length++ : 0;
