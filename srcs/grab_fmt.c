@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:35:42 by khou              #+#    #+#             */
-/*   Updated: 2018/09/27 13:59:44 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 14:07:29 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,6 @@ void	valid_all(t_block *blk)
 		!ft_strcmp(blk->length, "h\0") ? ft_strcpy(blk->length, "l\0") : 0;
 		blk->specifier = 'd';
 	}
-	
-/*	if (blk->specifier == 'p')
-	{
-		blk->hash = true;
-		blk->specifier = 'x';
-		ft_strcpy(blk->length, "ll\0");
-		blk->p_mark = false;
-	}
-*/
 	(blk->specifier == 's' && !ft_strcmp(blk->length, "l\0")) ?
 		blk->specifier = 'S' : 0;
 	(blk->specifier == 'c' && !ft_strcmp(blk->length, "l\0")) ?
