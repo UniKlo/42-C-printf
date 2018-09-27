@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/27 12:42:33 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 12:51:08 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,35 @@ int		bigger(int a, int b)
 	return (b);
 }
 
+void    left_write_blk(char *s, t_block *blk, t_write *act)
+{
+	(blk->pad_s) && write(*blk->fd, " ", 1);
+	act->sign || blk->s_data < 0 ? write(1, &act->sign, 1) : 0;
+	*blk->ret += ft_putstr(s, ft_strlen(s));
+	while (act->zero-- > 0)
+		write(*blk->fd, "0", 1);
+	*blk->ret += ft_putnbr(act->nbr, blk->specifier);
+	while (act->space-- > 0)
+		write(*blk->fd, " ", 1);
+}
 void	write_blk(char *s, t_block *blk, t_write *act)
 {
-	if (blk->left_align)
-	{
-		(blk->pad_s) && write(*blk->fd, " ", 1);
-		act->sign || blk->s_data < 0 ? write(1, &act->sign, 1) : 0;
-		*blk->ret += ft_putstr(s, ft_strlen(s));
-		while (act->zero-- > 0)
-			write(*blk->fd, "0", 1);
-		*blk->ret += ft_putnbr(act->nbr, blk->specifier);
-		while (act->space-- > 0)
-			write(*blk->fd, " ", 1);
-	}
-	else
-	{
-		(blk->pad_s) && write(*blk->fd, " ", 1);
-		blk->pad_z && act->sign ? write(1, &act->sign, 1) : 0;
-		blk->pad_z ? *blk->ret += ft_putstr(s, ft_strlen(s)) : 0;
-		while (act->space-- > 0)
-			blk->pad_z ? write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
-		!blk->pad_z ? *blk->ret += ft_putstr(s, ft_strlen(s)) : 0;
-		!blk->pad_z && act->sign ? write(1, &act->sign, 1) : 0;
-		while (act->zero-- > 0)
-			write(*blk->fd, "0", 1);
-		if ((blk->p_dot < -1 || blk->p_dot == 0) && act->nbr == 0)
-			return ;
-		else if (blk->hash && blk->p_dot == -1 && blk->specifier == 'o' &&
+	(blk->pad_s) && write(*blk->fd, " ", 1);
+	blk->pad_z && act->sign ? write(1, &act->sign, 1) : 0;
+	blk->pad_z ? *blk->ret += ft_putstr(s, ft_strlen(s)) : 0;
+	while (act->space-- > 0)
+		blk->pad_z ? write(*blk->fd, "0", 1) : write(*blk->fd, " ", 1);
+	!blk->pad_z ? *blk->ret += ft_putstr(s, ft_strlen(s)) : 0;
+	!blk->pad_z && act->sign ? write(1, &act->sign, 1) : 0;
+	while (act->zero-- > 0)
+		write(*blk->fd, "0", 1);
+	if ((blk->p_dot < -1 || blk->p_dot == 0) && act->nbr == 0)
+		return ;
+	else if (blk->hash && blk->p_dot == -1 && blk->specifier == 'o' &&
 				act->nbr == 0)
-			return ;
-		else
-			*blk->ret += ft_putnbr(act->nbr, blk->specifier);
-	}
+		return ;
+	else
+		*blk->ret += ft_putnbr(act->nbr, blk->specifier);
 }
 
 void	set_blk(t_block *blk, t_write *act)
@@ -86,7 +83,10 @@ void	set_blk(t_block *blk, t_write *act)
 	blk->pad_s && act->space-- > 0 ? *blk->ret += 1 : 0;
 	act->space < 0 ? act->space = 0 : 0;
 	*blk->ret += act->zero + act->space;
-	write_blk(s, blk, act);
+	if (blk->left_align)
+		left_write_blk(s, blk, act);
+	else
+		write_blk(s, blk, act);
 }
 
 int	ft_nbrlen(uintmax_t nbr)
@@ -111,7 +111,7 @@ void	p_diuox(t_block *blk)
 	!ft_strchr("uUxXo", blk->specifier) ? signed_lengh(blk, &act) :
 		unsigned_lengh(blk, &act);
 	tmp = act.nbr;
-	act.length = nbrlen(tmp);
+	act.length = ft_nbrlen(tmp);
 	if (blk->hash)
 		blk->specifier == 'o' || blk->specifier == 'O' ? act.sign = '0' : 0;
 	act.nbr == 0 ? act.length++ : 0;
