@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/27 12:51:08 by khou             ###   ########.fr       */
+/*   Created: 2018/09/27 12:56:00 by khou              #+#    #+#             */
+/*   Updated: 2018/09/27 13:13:48 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,7 @@ void	establish_write(t_write *act)
 	act->base = 10;
 }
 
-int		bigger(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	return (b);
-}
-
-void    left_write_blk(char *s, t_block *blk, t_write *act)
+void	left_write_blk(char *s, t_block *blk, t_write *act)
 {
 	(blk->pad_s) && write(*blk->fd, " ", 1);
 	act->sign || blk->s_data < 0 ? write(1, &act->sign, 1) : 0;
@@ -40,6 +33,7 @@ void    left_write_blk(char *s, t_block *blk, t_write *act)
 	while (act->space-- > 0)
 		write(*blk->fd, " ", 1);
 }
+
 void	write_blk(char *s, t_block *blk, t_write *act)
 {
 	(blk->pad_s) && write(*blk->fd, " ", 1);
@@ -87,19 +81,6 @@ void	set_blk(t_block *blk, t_write *act)
 		left_write_blk(s, blk, act);
 	else
 		write_blk(s, blk, act);
-}
-
-int	ft_nbrlen(uintmax_t nbr)
-{
-	int	len;
-
-	len = 0;
-	while (nbr)
-	{
-		nbr /= 10;
-		len++;
-	}
-	return (len);
 }
 
 void	p_diuox(t_block *blk)

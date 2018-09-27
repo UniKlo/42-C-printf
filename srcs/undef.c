@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 00:18:38 by khou              #+#    #+#             */
-/*   Updated: 2018/09/22 16:18:34 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/27 13:14:44 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,11 @@ void	undef(t_block *blk)
 	if (blk->specifier == 'Z')
 		write(1, "Z", 1);
 	*blk->ret += 1;
+}
+
+int		bigger(int a, int b)
+{
+	if (a >= b)
+		return (a);
+	return (b);
 }
