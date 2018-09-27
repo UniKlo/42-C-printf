@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:43:39 by khou              #+#    #+#             */
-/*   Updated: 2018/09/26 21:22:26 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 21:23:22 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	valid_all(t_block *blk)
 		blk->hash = true;
 		blk->specifier = 'x';
 		ft_strcpy(blk->length, "ll\0");
-		blk->un_data = va_arg(*blk->ap, unsigned long long int);
+		blk->un_data = va_arg(*blk->ap, char *);
 		if (!blk->un_data)
 			set_s(blk);	
 	}
