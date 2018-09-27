@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/25 17:30:17 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 20:33:48 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,12 @@ void	write_blk(t_block *blk, t_write *act)
 		while (act->zero-- > 0)
 			write(*blk->fd, "0", 1);
 //		printf("T/F: %d\n", blk->p_dot);
+
 		if ((blk->p_dot < -1 || blk->p_dot == 0) && act->nbr == 0)
 			return;
-		else if (blk->p_dot == -1 && blk->specifier == 'o' && act->nbr == 0)
+		else if (blk->hash && blk->p_dot == -1 && blk->specifier == 'o' && act->nbr == 0)
 			return;
+//			*blk->ret += ft_putnbr(act->nbr, blk->specifier);
 		else
 			*blk->ret += ft_putnbr(act->nbr, blk->specifier);
 	}
@@ -110,20 +112,15 @@ void		p_diuox(t_block *blk)
 		tmp /= 10;
 		act.length++;
 	}
+//	printf("T/F: %ju\n", tmp);
     if (blk->hash)
     {
 		blk->specifier == 'o' ? act.sign = '0' : 0;
 		blk->specifier == 'O' ? act.sign = '0' : 0;
-		if (act.nbr == 0 && blk->pad_s != 0)
-		{
-			blk->pad_s = false;
-			act.sign = '\0';
-		}
 //		printf("sign: {%c}\n", act.sign);
 	}
 //	printf("act.length1: %d\n", act.length);
-	(blk->specifier != 'o'  && act.nbr == 0) ? act.length++ : act.length;
-//	act.nbr == 0 ? act.length++ : 0;
+	act.nbr == 0 ? act.length++ : 0;
 //    printf("act.length2: %d\n", act.length);
 	act.space = blk->width - bigger(blk->p_dot, act.length);// +, -, 0
 	act.space < 0 ? act.space = 0: 0;
@@ -131,15 +128,11 @@ void		p_diuox(t_block *blk)
 	act.zero = (blk->p_dot - act.length);
 	act.zero < 0 ? act.zero = 0: 0;// +, -, 0
 //	printf("act.zero: %d\n", act.zero);
+//	printf("T/F: %d\n", (blk->p_dot < -1 || blk->p_dot == 0) && act.nbr == 0);
 	if ((blk->p_dot < -1 || blk->p_dot == 0) && act.nbr == 0)
 		if (act.space > 0 || act.sign)
 		{
-			if (blk->specifier != 'o' && blk->specifier != 'O')
-			{
-				act.space++;
-//				printf("T/F: %d\n", blk->specifier != 'o');
-//				printf("act.space2:  %d\n", act.space);
-			}
+			act.space++;
             write_blk(blk, &act);
 		}
         else
