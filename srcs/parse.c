@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 00:48:14 by khou              #+#    #+#             */
-/*   Updated: 2018/09/24 15:50:54 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 22:21:27 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	establish(t_print *all, t_block *blk)
 	blk->ap = &all->ap;
 	blk->fd = &all->fd;
 	blk->ret = &all->ret;
+	blk->p_mark = true;
 }
 
 void	grab_flag(t_block *blk, char *blk_fmt, int *i)
