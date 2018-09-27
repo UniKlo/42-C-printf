@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:07:13 by khou              #+#    #+#             */
-/*   Updated: 2018/09/26 21:54:05 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/26 22:29:12 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	write_blk(t_block *blk, t_write *act)
 		if (blk->p_dot == -1 && act->space > 0 && act->nbr == 0 && 
 			(blk->specifier == 'x' || blk->specifier == 'X'))
 			act->space += 2;
+		act->nbr == 0 ? blk->p_mark = 0 : 1;
 //		printf("act->space2: %d\n", act->space);
 		*s && act->nbr == 0 && blk->p_mark == 0 ? s = "\0" : 0;
 	}
