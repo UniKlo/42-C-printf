@@ -42,7 +42,7 @@ LIBFT = ft_atoi.c		ft_bzero.c		ft_count_nbr_block.c	ft_isalnum.c\
 		ft_toupper.c	ft_nbrlen.c
 
 SOURCES =	 printf.c		fmt_dispatch.c			grab_fmt.c\
-			 p_diuoxX.c		p_s.c			p_c.c\
+			 p_diuox.c		p_s.c			p_c.c\
 			 undef.c 		get_lengh.c
 
 SRCS = $(addprefix $(DIR_L), $(LIBFT)) $(addprefix $(DIR_S), $(SOURCES)) 
