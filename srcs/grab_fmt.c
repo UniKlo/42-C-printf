@@ -6,7 +6,7 @@
 /*   By: khou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:35:42 by khou              #+#    #+#             */
-/*   Updated: 2018/09/27 14:07:29 by khou             ###   ########.fr       */
+/*   Updated: 2018/09/29 11:52:29 by khou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		is_flag(t_block *blk, char c)
 void	valid_all(t_block *blk)
 {
 	blk->sign == 1 ? blk->pad_s = false : 0;
-	blk->p_dot > 0 ? blk->pad_z = false : 0;
+	blk->p_dot > 0 && blk->specifier != 's' ? blk->pad_z = false : 0;
 	blk->left_align == 1 ? blk->pad_z = false : 0;
 	blk->specifier == 'u' ? blk->pad_s = false : 0;
 	blk->specifier == 'u' ? blk->sign = false : 0;
@@ -94,5 +94,5 @@ int		specifier(t_block *blk, char c)
 		else
 			return (1);
 	}
-	return (1);
+	return (0);
 }
