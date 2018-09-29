@@ -6,7 +6,7 @@
 #    By: khou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/22 18:08:35 by khou              #+#    #+#              #
-#    Updated: 2018/09/27 12:58:31 by khou             ###   ########.fr        #
+#    Updated: 2018/09/29 13:24:52 by khou             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,7 +16,7 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
 
-DIR_INC = Include/
+DIR_INC = include/
 
 DIR_L = libft/
 
@@ -55,13 +55,10 @@ INC = $(addprefix $(DIR_INC), $(HEADER))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-#	@make -C libft
-#	@cp libft/libft.a ./$(NAME)
 	@ar rcs $(NAME) $(OBJS)
-#	@ranlib $(NAME)
 
 ./%.o: ./%.c $(INC)
-	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
+	@$(C) $(FLAGS) -I $(DIR_INC) -o $@ -c $<
 
 norme:
 	norminette ./libft/
